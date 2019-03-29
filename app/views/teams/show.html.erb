@@ -9,13 +9,73 @@
     <div class="row">
 
       <div class="col-sm-4">
-        <%= image_tag("logo-#{team.id}.png", height: '32') %>
+        <%= image_tag("logo-#{@team.id}.png", height: '300') %>
       </div>
 
-      <div class="col-sm-8">
+      <div class="col-sm-4">
         <dl class="dl-horizontal">
           <dt>Name</dt>
           <dd><%= @team.name %></dd>
+          <dt>Games Played</dt>
+          <dd><%= @team.gamesPlayed %></dd>
+          <dt>Wins</dt>
+          <dd><%= @team.wins %></dd>
+          <dt>Losses</dt>
+          <dd><%= @team.losses %></dd>
+          <dt>Overtime</dt>
+          <dd><%= @team.ot %></dd>
+          <dt>Points</dt>
+          <dd><%= @team.pts %></dd>
+          <dt>Point Percent Game</dt>
+          <dd><%= @team.ptPctg %></dd>
+          <dt>Goals Per Game</dt>
+          <dd><%= @team.goalsPerGame %></dd>
+          <dt>Goals Against Per Game</dt>
+          <dd><%= @team.goalsAgainstPerGame %></dd>
+          <dt>EvGGA Ratio</dt>
+          <dd><%= @team.evGGARatio %></dd>
+          <dt>Power Play Percentage</dt>
+          <dd><%= @team.powerPlayPercentage %></dd>
+          <dt>Power Play Goals</dt>
+          <dd><%= @team.powerPlayGoals %></dd>
+          <dt>Power Play Goals Against</dt>
+          <dd><%= @team.powerPlayGoalsAgainst %></dd>
+          <dt>Power Play Opportunities</dt>
+          <dd><%= @team.powerPlayOpportunities %></dd>
+        </dl>
+      </div>
+      <div class="col-sm-4">
+        <dl class="dl-horizontal">
+          <dt>Penalty Kill Percentage</dt>
+          <dd><%= @team.penaltyKillPercentage %></dd>
+          <dt>Shots Per Game</dt>
+          <dd><%= @team.shotsPerGame %></dd>
+          <dt>Shots Allowed</dt>
+          <dd><%= @team.shotsAllowed %></dd>
+          <dt>Win Score First</dt>
+          <dd><%= @team.winScoreFirst %></dd>
+          <dt>Win Opponent Score First</dt>
+          <dd><%= @team.winOppScoreFirst %></dd>
+          <dt>Win Lead First Period</dt>
+          <dd><%= @team.winLeadFirstPer %></dd>
+          <dt>Win Lead Second Period</dt>
+          <dd><%= @team.winLeadSecondPer %></dd>
+          <dt>Win Outshoot Opponent</dt>
+          <dd><%= @team.winOutshootOpp %></dd>
+          <dt>Win Outshot By Opponent</dt>
+          <dd><%= @team.winOutshotByOpp %></dd>
+          <dt>Face Offs Taken</dt>
+          <dd><%= @team.faceOffsTaken %></dd>
+          <dt>Face Offs Won</dt>
+          <dd><%= @team.faceOffsWon %></dd>
+          <dt>Face Offs Lost</dt>
+          <dd><%= @team.faceOffsLost %></dd>
+          <dt>Face Off Win Percentage</dt>
+          <dd><%= @team.faceOffWinPercentage %></dd>
+          <dt>Shooting Percentage Game</dt>
+          <dd><%= @team.shootingPctg %></dd>
+          <dt>Save Percentage Game</dt>
+          <dd><%= @team.savePctg %></dd>
         </dl>
       </div>
     </div>
@@ -23,89 +83,3 @@
   </article>
 
 </section>
-
-<td>
-    <%= team.gamesPlayed %>
-  </td>
-  <td>
-    <%= team.wins %>
-  </td>
-  <td>
-    <%= team.losses %>
-  </td>
-  <td>
-    <%= team.ot %>
-  </td>
-  <td>
-    <%= team.pts %>
-  </td>
-  <td>
-    <%= team.ptPctg %>
-  </td>
-  <td>
-    <%= team.goalsPerGame %>
-  </td>
-  <td>
-    <%= team.goalsAgainstPerGame %>
-  </td>
-  <td>
-    <%= team.evGGARatio %>
-  </td>
-  <td>
-    <%= team.powerPlayPercentage %>
-  </td>
-  <td>
-    <%= team.powerPlayGoals %>
-  </td>
-  <td>
-    <%= team.powerPlayGoalsAgainst %>
-  </td>
-  <td>
-    <%= team.powerPlayOpportunities %>
-  </td>
-  <td>
-    <%= team.penaltyKillPercentage %>
-  </td>
-  <td>
-    <%= team.shotsPerGame %>
-  </td>
-  <td>
-    <%= team.shotsAllowed %>
-  </td>
-  <td>
-    <%= team.winScoreFirst %>
-  </td>
-  <td>
-    <%= team.winOppScoreFirst %>
-  </td>
-  <td>
-    <%= team.winLeadFirstPer %>
-  </td>
-  <td>
-    <%= team.winLeadSecondPer %>
-  </td>
-  <td>
-    <%= team.winOutshootOpp %>
-  </td>
-  <td>
-    <%= team.winOutshotByOpp %>
-  </td>
-  <td>
-    <%= team.faceOffsTaken %>
-  </td>
-  <td>
-    <%= team.faceOffsWon %>
-  </td>
-  <td>
-    <%= team.faceOffsLost %>
-  </td>
-  <td>
-    <%= team.faceOffWinPercentage %>
-  </td>
-  <td>
-    <%= team.shootingPctg %>
-  </td>
-  <td>
-    <%= team.savePctg %>
-  </td>
-</tr>
