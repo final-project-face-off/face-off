@@ -29,7 +29,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!(:teams)
       key.powerPlayGoals = team["teamStats"][0]["splits"][0]["stat"]["powerPlayGoals"]
       key.powerPlayGoalsAgainst = team["teamStats"][0]["splits"][0]["stat"]["powerPlayGoalsAgainst"]
       key.powerPlayOpportunities = team["teamStats"][0]["splits"][0]["stat"]["powerPlayOpportunities"]
-      key.penaltyKillPercentage = team["teamStats"][0]["splits"][0]["stat"]["[penaltyKillPercentage"]
+      key.penaltyKillPercentage = team["teamStats"][0]["splits"][0]["stat"]["penaltyKillPercentage"]
       key.shotsPerGame = team["teamStats"][0]["splits"][0]["stat"]["shotsPerGame"]
       key.shotsAllowed = team["teamStats"][0]["splits"][0]["stat"]["shotsAllowed"]
       key.winScoreFirst = team["teamStats"][0]["splits"][0]["stat"]["winScoreFirst"]
