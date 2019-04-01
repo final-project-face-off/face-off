@@ -19,6 +19,9 @@ gem 'uglifier', '>= 1.3.0'
 # API
 gem 'rest-client'
 gem 'indico'
+gem 'responders'
+
+gem 'react-rails'
 
 # DISPLAY
 gem 'bootstrap'
