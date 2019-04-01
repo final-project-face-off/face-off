@@ -5,7 +5,7 @@
 
 const tf = require("@tensorflow/tfjs");
 const tfnode = require("@tensorflow/tfjs-node");
-// import team-stats from "./team-stats.json"
+// const team-stats = require("./team-stats.json");
 const iris = require("./iris.json");
 const irisTesting = require("./iris-testing.json");
 
