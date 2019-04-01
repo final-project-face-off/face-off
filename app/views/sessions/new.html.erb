@@ -1,0 +1,20 @@
+<div class="container-users">
+
+    <h1>Login</h1>
+  
+
+<%= form_tag '/login' do %>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" <%= text_field_tag :email %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" <%= password_field_tag :password %>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+<% end %>
+
+</div>
