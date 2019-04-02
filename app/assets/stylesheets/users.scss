@@ -1,3 +1,17 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-users {
+    height: 800px;
+    padding: 12em;
+    background-image: url('/assets/scratched_ice_Preview.jpg');
+}
+
+.form-group {
+    margin-right: 10%;
+}
+
+.form-control {
+    background-color: #f7f8f9;
+}
