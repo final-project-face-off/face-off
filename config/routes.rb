@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
  root to: 'teams#index'
 
- resource :teams
+ resources :teams, only: [:index, :show]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
