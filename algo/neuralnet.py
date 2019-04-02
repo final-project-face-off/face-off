@@ -1,19 +1,22 @@
 import numpy as np
 import psycopg2
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 try:
-    connection = psycopg2.connect(user = "vagrant",
-                                  password = "",
-                                  host = "127.0.0.0",
-                                  port = "3000",
-                                  database = "face_off")
+    connection = psycopg2.connect(user = os.getenv("DB_USER"),
+                                  password = os.getenv("DB_PASS"),
+                                  host = os.getenv("DB_HOST"),
+                                  port = os.getenv("DB_PORT"),
+                                  database = os.getenv("DB_NAME"))
                                   
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     print ( connection.get_dsn_parameters(),"\n")
 
     # Print PostgreSQL version
-    cursor.execute("SELECT version();")
+    cursor.execute("SELECT * FROM past_teams WHERE team_id = 1 AND season = 20092010")
     record = cursor.fetchone()
     print("You are connected to - ", record,"\n")
 except (Exception, psycopg2.Error) as error :

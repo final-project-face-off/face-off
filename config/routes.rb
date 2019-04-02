@@ -2,13 +2,16 @@ Rails.application.routes.draw do
 
  root to: 'teams#index'
 
-  namespace :api do
-    namespace :v1 do
-      
-    end
-  end
+  # THIS DOESN'T WORK
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :teams, only: [:index, :show]
+  #   end
+  # end
 
-  resources :teams, only: [:index]
+  resources :teams, only: [:index, :show]
+
+
 
   get '/compare' => 'comparisons#show'
 
@@ -20,5 +23,5 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-    
-end 
+
+end
