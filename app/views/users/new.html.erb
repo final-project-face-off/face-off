@@ -1,11 +1,29 @@
-<h1>Signup!</h1>
+<div class="container-users">
+
+    <h1>Sign Up</h1>
+  
 
 <%= form_for :user, url: '/users' do |f| %>
 
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">Name</label>
+    <input type="name" class="form-control" id="exampleInputName1" placeholder="Name" <%= f.text_field :name %> 
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" <%= f.text_field :email %> 
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" <%= f.password_field :password %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Confirm Password" <%= f.password_field :password_confirmation %>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 
 <% end %>
+
+</div>

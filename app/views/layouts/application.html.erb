@@ -9,14 +9,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-
-  <% if current_user %>
-    Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-  <% else %>
-    <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-  <% end %>
-
+  <%= render 'layouts/top_nav' %>
+ 
     <%= yield %>
   </body>
 </html>
