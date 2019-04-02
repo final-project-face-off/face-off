@@ -4,15 +4,15 @@ require 'rails/configuration'
 Team.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(:teams)
 
-#New York Times API endpoint
+#NHL API endpoint
   nhl_url = "https://statsapi.web.nhl.com/api/v1/teams?expand=team.stats"
 
-#RestClient get request to the NYT endpoint with my API Key being parsed into a JS object
+#RestClient get request to the NHL endpoint parsed into a JS object
   data = JSON.parse( RestClient.get("#{nhl_url}") )
 
-#Iterating through each result/article of the NYT
+#Iterating through each NHL team
   data["teams"].each do |team, index|
-    #Creating a new article in my database and assigning it's properties
+    #Creating a new team in my database
     team = Team.new do |key|
       key.id = team["id"]
       key.name = team["name"]
