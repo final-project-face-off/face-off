@@ -1,0 +1,151 @@
+// Place all the styles related to the comparisons controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+body {
+  background: #F2F2F2;
+  padding: 0;
+  maring: 0;
+}
+
+.container-compare {
+    padding: 8em;
+}
+
+.selector {
+    display: inline-block;
+    width: 49%;
+    padding: 3em;
+}
+
+#price {
+  text-align: center;
+}
+
+.plan {
+  display: inline-block;
+  margin: 10px 1%;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+.plan-inner {
+  background: #fff;
+  margin: 0 auto;
+  min-width: 280px;
+  max-width: 100%;
+  position:relative;
+}
+
+.entry-title {
+  background: #53CFE9;
+  height: 140px;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+  padding-top: 20px;
+  border-radius: 10px;
+}
+
+.entry-title>h3 {
+  background: #20BADA;
+  font-size: 20px;
+  padding: 5px 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0;
+}
+
+.entry-title .logo {
+  position: absolute;
+  bottom: -25px;
+  background: #20BADA;
+  height: 95px;
+  width: 95px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 5px solid #fff;
+  line-height: 80px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.logo span {
+  position: absolute;
+  font-size: 9px;
+  bottom: -10px;
+  left: 30px;
+  font-weight: 400;
+}
+
+.entry-content {
+  color: #323232;
+}
+
+.entry-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.entry-content li {
+  border-bottom: 1px solid #E5E5E5;
+  padding: 10px 0;
+}
+
+.entry-content li:last-child {
+  border: none;
+}
+
+.btn btn-primary {
+  padding: 3em 0;
+  text-align: center;
+}
+
+.btn btn-primary {
+// //   visibility: hidden;  
+//   background: #323232;
+//   padding: 10px 30px;
+//   color: #fff;
+//   text-transform: uppercase;
+//   font-weight: 700;
+//   text-decoration: none
+}
+
+.basic .entry-title {
+    background-image: url('/assets/scratched_ice_Preview.jpg');
+}
+
+// .basic .entry-title > h3 {
+//     background-image: url('/assets/scratched_ice_Preview.jpg');
+// }
+
+.basic .logo {
+  background: rgb(246, 248, 248);
+}
+
+.standard .entry-title {
+    background-image: url('/assets/scratched_ice_Preview.jpg');
+}
+
+
+.standard .logo {
+  background: #fafbfc;
+}
+
+.ultimite .entry-title > h3 {
+  background: #DD4B5E;
+}
+
+.ultimite .entry-title {
+  background: #F75C70;
+}
+
+.ultimite .price {
+  background: #DD4B5E;
+}

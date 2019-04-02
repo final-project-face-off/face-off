@@ -4,9 +4,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :teams, only: [:index]
+      
     end
   end
+
+  resources :teams, only: [:index]
+
+  get '/compare' => 'comparisons#show'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

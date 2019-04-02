@@ -2,6 +2,8 @@
 <nav class="navbar navbar-light bg-light">
 <a class="navbar-brand" href="/">Face_Off</a>
 
+<a href="/compare?team_1=1&team_2=2">Compare Teams</a>
+
 <div>
 <% if current_user %>
   Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>

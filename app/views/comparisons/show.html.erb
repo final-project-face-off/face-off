@@ -1,0 +1,52 @@
+<div class="container-compare">
+
+    
+
+    <form action="<%= compare_path %>" method="GET">
+
+<div class="selector">
+    <!--team tab-->
+    <div class="plan standard">
+        
+        <div class="entry-title">
+        <%= select_tag 'team_1', options_from_collection_for_select(Team.all, :id, :name), :prompt => 'Select Team 1' %>
+            <div class="logo"> <%= image_tag("/assets/logo-#{@team1.id}.png", :size => "80x80") %> 
+            </div>
+        </div>
+        <div class="entry-content">
+        
+        <%= render @team1 %>
+
+        </div>
+            
+    </div>
+</div>
+    <!-- end of team tab-->
+
+<div class="selector">
+    <!--team tab-->
+    <div class="plan basic">
+        
+        <div class="entry-title">
+        <%= select_tag 'team_2', options_from_collection_for_select(Team.all, :id, :name), :prompt => 'Select Team 2'  %>
+            <div class="logo"> <%= image_tag("/assets/logo-#{@team2.id}.png", :size => "80x80") %>
+            </div>
+        </div>
+        <div class="entry-content">
+        
+        <%= render @team2 %>
+            
+        </div>
+        
+    </div>
+</div>
+
+    <!-- end of team tab-->
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <end>
+
+    
+
+  </div>
