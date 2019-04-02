@@ -16,7 +16,7 @@ try:
     print ( connection.get_dsn_parameters(),"\n")
 
     # Print PostgreSQL version
-    cursor.execute("SELECT version();")
+    cursor.execute("SELECT * FROM past_teams WHERE team_id = 1 AND season = 20092010")
     record = cursor.fetchone()
     print("You are connected to - ", record,"\n")
 except (Exception, psycopg2.Error) as error :
