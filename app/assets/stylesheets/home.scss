@@ -7,3 +7,36 @@
 body {
   font-size: 10px;
 }
+
+// background
+.masthead {
+  height: 60vh;
+  background-image: image-url("rink-faceoff.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+
+  // feature box
+  .jumbotron {
+    padding: 1rem 2rem;
+    min-width: 22rem;
+    min-height: 15rem;
+    border-radius: 2rem;
+
+    .sim-logo{
+      border-radius: 100%;
+      width: 7em;
+      height: 7em;
+      background: darkblue;
+    }
+  }
+}
+
+.div-header {
+  width: 100%;
+  background: darkblue;
+  color: white;
+  text-align: center;
+  padding-top: .2em 0;
+  margin: 0;
+}
