@@ -1,0 +1,2 @@
+class GameSimController < ApplicationController
+end
