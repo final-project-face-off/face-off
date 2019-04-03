@@ -1,2 +1,57 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<header class="masthead">
+  <div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+    <div class="container">
+      <div class="row" align="center">
+        <div class="col" align="center">
+          <%= image_tag ("logo-1.png"), :class => "sim-logo" %>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Team 1</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+        <div class="col" align="center">
+          <%= image_tag ("logo-4.png"), :class => "sim-logo" %>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Team 2</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center" span="2" align="center">
+        <input class="btn btn-primary" type="submit" value="Submit">
+      </div>
+    </div>
+  </div>
+</header>
+<div class="div-header">
+<h5>SCOREBOARD</h5>
+</div>
+<div class="games-container">
+<h5>Upcoming Games</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Away</th>
+          <th scope="col"></th>
+          <th scope="col">Home</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @games %>
+      </tbody>
+    </table>
+</div>

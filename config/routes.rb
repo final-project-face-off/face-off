@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
- root to: 'teams#index'
+ root to: 'home#index'
 
   # THIS DOESN'T WORK
   # namespace :api do
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # end
 
   resources :teams, only: [:index, :show]
+  resources :games, only: [:index, :show]
 
   
   get '/charts' => 'charts#show'
