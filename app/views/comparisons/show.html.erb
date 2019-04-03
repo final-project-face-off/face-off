@@ -4,6 +4,7 @@
 
     <form action="<%= compare_path %>" method="GET">
 
+
 <div class="selector">
     <!--team tab-->
     <div class="plan standard">
@@ -15,7 +16,18 @@
         </div>
         <div class="entry-content">
         
-        <%= render @team1 %>
+        <ul>
+            <li><%= link_to "#{@team2.name}", team_path(@team2.id) %></li>
+            <li><strong>Wins : </strong> <%= @team1.wins %></li>
+            <li><strong>Losses : </strong><%= @team1.losses %></li>
+            <li><strong>Goals/Game : </strong><%= @team1.goalsPerGame %></li>
+            <li><strong>Goals Against/Game : </strong><%= @team1.goalsAgainstPerGame %></li>
+            <li><strong>Power Play % : </strong><%= @team1.powerPlayPercentage %></li>
+            <li><strong>Penalty Kill % : </strong><%= @team1.penaltyKillPercentage %></li> 
+            <li><strong>Face Off Win % : </strong><%= @team1.faceOffWinPercentage %></li>
+            <li><strong>Shot % : </strong><%= @team1.shootingPctg %></li>
+            <li><strong>Save % : </strong><%= @team1.savePctg %></li>            
+        </ul>
 
         </div>
             
@@ -34,7 +46,19 @@
         </div>
         <div class="entry-content">
         
-        <%= render @team2 %>
+        
+        <ul>
+            <li><%= link_to "#{@team2.name}", team_path(@team2.id) %></li>
+            <li><strong>Wins : </strong> <%= @team2.wins %></li>
+            <li><strong>Losses : </strong><%= @team2.losses %></li>
+            <li><strong>Goals/Game : </strong><%= @team2.goalsPerGame %></li>            
+            <li><strong>Goals Against/Game : </strong><%= @team2.goalsAgainstPerGame %></li>
+            <li><strong>Power Play % : </strong><%= @team2.powerPlayPercentage %></li>
+            <li><strong>Penalty Kill % : </strong><%= @team2.penaltyKillPercentage %></li> 
+            <li><strong>Face Off Win % : </strong><%= @team2.faceOffWinPercentage %></li>
+            <li><strong>Shot % : </strong><%= @team2.shootingPctg %></li>
+            <li><strong>Save % : </strong><%= @team2.savePctg %></li> 
+        </ul>
             
         </div>
         
@@ -42,7 +66,6 @@
 </div>
 
     <!-- end of team tab-->
-  
     <button type="submit" class="btn btn-primary">Submit</button>
 
     <end>
@@ -50,3 +73,4 @@
     
 
   </div>
+  

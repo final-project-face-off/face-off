@@ -5,12 +5,11 @@
 
 body {
   background: #F2F2F2;
-  padding: 0;
-  maring: 0;
 }
 
 .container-compare {
-    padding: 8em;
+    padding-left: 8em;
+    padding-right: 8em;
 }
 
 .selector {
@@ -117,7 +116,12 @@ body {
 //   text-decoration: none
 }
 
+.basic {
+    display: block;
+}
+
 .basic .entry-title {
+    display: block;
     background-image: url('/assets/scratched_ice_Preview.jpg');
 }
 
@@ -129,9 +133,15 @@ body {
   background: rgb(246, 248, 248);
 }
 
+.standard {
+    display: block;
+}
+
 .standard .entry-title {
+    display: block;
     background-image: url('/assets/scratched_ice_Preview.jpg');
 }
+
 
 
 .standard .logo {
