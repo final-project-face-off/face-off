@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   resources :teams, only: [:index, :show]
 
-
-
+  
+  get '/charts' => 'charts#show'
   get '/compare' => 'comparisons#show'
 
   get '/login' => 'sessions#new'
