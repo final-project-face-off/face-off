@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
   def show
-    @games = Game.all
+    @games = Game.where(status: 'Scheduled')
   end
 end

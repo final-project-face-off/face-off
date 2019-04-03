@@ -20,13 +20,14 @@ data = JSON.parse( RestClient.get("#{nhl_url}") )
   data["dates"][0]["games"].each do |game, index|
     #Creating a new game in my database and assigning it's properties
     game = Game.new do |key|
-      key.gameDate = game["gameDate"]
+      key.gameDate = today
       key.awayID = game["teams"]["away"]["team"]["id"]
       key.awayScore = game["teams"]["away"]["score"]
       key.awayName = game["teams"]["away"]["team"]["name"]
       key.homeID = game["teams"]["home"]["team"]["id"]
       key.homeScore = game["teams"]["home"]["score"]
       key.homeName = game["teams"]["home"]["team"]["name"]
+      key.status = game["status"]["detailedState"]
     end
     #Saving games
     if game.save
@@ -53,13 +54,14 @@ data = JSON.parse( RestClient.get("#{nhl_url}") )
   data["dates"][0]["games"].each do |game, index|
     #Creating a new game in my database and assigning it's properties
     game = Game.new do |key|
-      key.gameDate = game["gameDate"]
+      key.gameDate = yesterday
       key.awayID = game["teams"]["away"]["team"]["id"]
       key.awayScore = game["teams"]["away"]["score"]
       key.awayName = game["teams"]["away"]["team"]["name"]
       key.homeID = game["teams"]["home"]["team"]["id"]
       key.homeScore = game["teams"]["home"]["score"]
       key.homeName = game["teams"]["home"]["team"]["name"]
+      key.status = game["status"]["detailedState"]
     end
     #Saving games
     if game.save
@@ -86,13 +88,14 @@ data = JSON.parse( RestClient.get("#{nhl_url}") )
   data["dates"][0]["games"].each do |game, index|
     #Creating a new game in my database and assigning it's properties
     game = Game.new do |key|
-      key.gameDate = game["gameDate"]
+      key.gameDate = tomorrow
       key.awayID = game["teams"]["away"]["team"]["id"]
       key.awayScore = game["teams"]["away"]["score"]
       key.awayName = game["teams"]["away"]["team"]["name"]
       key.homeID = game["teams"]["home"]["team"]["id"]
       key.homeScore = game["teams"]["home"]["score"]
       key.homeName = game["teams"]["home"]["team"]["name"]
+      key.status = game["status"]["detailedState"]
     end
     #Saving games
     if game.save
