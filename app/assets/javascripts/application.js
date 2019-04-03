@@ -21,4 +21,5 @@
 //= require components
 //= require_tree .
 //= require Chart.bundle
+//= require highcharts
 //= require chartkick

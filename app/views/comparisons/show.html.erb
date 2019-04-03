@@ -1,22 +1,25 @@
 <div class="container-compare">
 
 
-    <form action="<%= compare_path %>" method="GET">
+    <form action="<%= compare_path %>" method="GET" class="d-flex">
 
+ 
 
 <div class="selector">
     <!--team tab-->
     <div class="plan standard">
         
         <div class="entry-title">
-        <%= select_tag 'team_1', options_from_collection_for_select(Team.all, :id, :name), :prompt => @team1.name %>
-            <div class="logo"> <%= image_tag("/assets/logo-#{@team1.id}.png", :height => "70") %> 
+        <%= select_tag 'team_1', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team", :onchange => 'update_logo(this.value)' %>
+          
+        <div class="logo"> <%= image_tag("/assets/logo-#{@team1.id}.png", :height => "70") %> 
             </div>
+
         </div>
         <div class="entry-content">
         
         <ul>
-            <li><%= link_to "#{@team2.name}", team_path(@team2.id) %></li>
+            <li><%= link_to "#{@team1.name}", team_path(@team1.id) %></li>
             <li><strong>Wins : </strong> <%= @team1.wins %></li>
             <li><strong>Losses : </strong><%= @team1.losses %></li>
             <li><strong>Goals/Game : </strong><%= @team1.goalsPerGame %></li>
@@ -34,17 +37,20 @@
 </div>
     <!-- end of team tab-->
 
+    <div>
+    <button type="submit" class="vs-butt"><h1>vs</h1></button>
+    </div>
+
 <div class="selector">
     <!--team tab-->
     <div class="plan basic">
         
         <div class="entry-title">
-        <%= select_tag 'team_2', options_from_collection_for_select(Team.all, :id, :name), :prompt => @team2.name  %>
+        <%= select_tag 'team_2', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team"  %>
             <div class="logo"> <%= image_tag("/assets/logo-#{@team2.id}.png", :height => "70") %>
             </div>
         </div>
         <div class="entry-content">
-        
         
         <ul>
             <li><%= link_to "#{@team2.name}", team_path(@team2.id) %></li>
@@ -65,7 +71,7 @@
 </div>
 
     <!-- end of team tab-->
-    <button type="submit" class="btn btn-primary">Submit</button>
+    
 
     <end>
 

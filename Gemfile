@@ -28,6 +28,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'chartkick'
 gem 'chartable'
+gem 'highcharts-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

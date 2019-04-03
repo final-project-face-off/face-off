@@ -47,14 +47,14 @@ body {
   border-radius: 10px;
 }
 
-.entry-title>h3 {
-  background: #20BADA;
-  font-size: 20px;
-  padding: 5px 0;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0;
-}
+// .entry-title>h3 {
+//   background: #20BADA;
+//   font-size: 20px;
+//   padding: 5px 0;
+//   text-transform: uppercase;
+//   font-weight: 700;
+//   margin: 0;
+// }
 
 .entry-title .logo {
   position: absolute;
@@ -100,20 +100,25 @@ body {
 .entry-content li:last-child {
   border: none;
 }
-
-.btn btn-primary {
-  padding: 3em 0;
+.vs-butt {
+//   width: 76px;
+border: #ffffff;
+  height: 49px;
+  padding-top: 1px;
+  margin-top: 168px;
   text-align: center;
+  background: #8a2be200;
+  outline: none;
 }
 
-.btn btn-primary {
-// //   visibility: hidden;  
-//   background: #323232;
-//   padding: 10px 30px;
-//   color: #fff;
-//   text-transform: uppercase;
-//   font-weight: 700;
-//   text-decoration: none
+.vs-butt>h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 0.2;
+}
+
+.vs-butt>h1:hover {
+    color: #004085;
 }
 
 .basic {

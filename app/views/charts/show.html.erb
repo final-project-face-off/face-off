@@ -1,7 +1,7 @@
-<%= bar_chart Team.order('wins Desc').limit(5).group('wins').count %>
+<%= bar_chart @teams.group('wins').order('wins Desc').limit(5).count %>
 
-<%= pie_chart Team.limit(5).group('name').sum('wins') %>
+<%= pie_chart @teams.limit(5).group('name').sum('wins') %>
 
-<%= column_chart Team.limit(10).group('name').sum('wins') %>
+<%= column_chart @teams.limit(10).group('name').sum('wins') %>
 
-<%= scatter_chart Team.pluck('wins', 'goalsPerGame'), xtitle: "Wins", ytitle: "Goals / Game" %>
+<%= scatter_chart @teams.pluck('wins', 'goalsPerGame'), xtitle: "Wins", ytitle: "Goals / Game" %>
