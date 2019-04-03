@@ -24,10 +24,11 @@ body {
     border-radius: 2rem;
 
     .sim-logo{
-      border-radius: 100%;
+      border-radius: 75%;
       width: 7em;
       height: 7em;
-      background: darkblue;
+      object-fit: contain;
+      background: white;
     }
   }
 }
