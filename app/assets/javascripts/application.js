@@ -22,3 +22,19 @@
 //= require_tree .
 //= require Chart.bundle
 //= require chartkick
+
+function changeLogo1(selTeam) {
+  if (!selTeam) {
+    document.getElementById('team1').src = "/assets/logo-nhl.png"
+  } else {
+    document.getElementById('team1').src = "/assets/logo-" + selTeam + ".png"
+  }
+}
+
+function changeLogo2(selTeam) {
+  if (!selTeam) {
+    document.getElementById('team2').src = "/assets/logo-nhl.png"
+  } else {
+    document.getElementById('team2').src = "/assets/logo-" + selTeam + ".png"
+  }
+}
