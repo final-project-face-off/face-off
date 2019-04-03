@@ -2,7 +2,7 @@ import numpy as np
 import psycopg2
 from dotenv import load_dotenv
 import os
-import decimal
+import decimal 
 load_dotenv()
 
 # Helper function to get past team stats based on team id and season
@@ -30,13 +30,15 @@ def get_past_team_stats(id, season):
             if(connection):
                 cursor.close()
                 connection.close()
-                print("PostgreSQL connection is closed")
+                # print("PostgreSQL connection is closed")
 
 def compare_two_teams(id_1, id_2, season):
+    # print('args: ', id_1, id_2, season)
     team_1 = get_past_team_stats(id_1, season)
     team_2 = get_past_team_stats(id_2, season)
+    # print('zip: ', zip(team_1, team_2))
     diff = [a - b for a, b in zip(team_1, team_2)]
-    # print(diff)
+    # print('diff:', diff)
     return diff
 
 
@@ -45,9 +47,18 @@ class NeuralNetwork():
         # Seed the random number generator
         np.random.seed(1)
 
-        # Set synaptic weights to a 9x1 matrix (since 9 is the number of variables taken into account)
+        # Set synaptic weights to a 9x2 matrix (since 9 is the number of variables taken into account)
         # Synaptic weights are set to values from -1 to 1 and mean 0
-        self.synaptic_weights = 2 * np.random.random((9, 2)) - 1
+        self.result = 2 * np.random.random((9, 2)) - 1
+        # print(tuple(np.random.random((9, 2)) - 1))
+        # self.result.astype(int)
+        # print(type (self.result))
+        # print(self.result)
+        # self.result_two = [decimal.Decimal(x) for x in self.result]
+        # print("result")
+        # print(self.result_two)
+        self.synaptic_weights = [[decimal.Decimal(y) for y in x] for x in self.result]
+        # self.synaptic_weights = [decimal.Decimal(x,y) for (x,y) in self.result_two]
 
     def sigmoid(self, x):
         # Takes in weighted sum of the inputs and normalizes them between 0 and 1 through sigmoid function
@@ -55,6 +66,7 @@ class NeuralNetwork():
 
     def sigmoid_derivative(self, x):
         # Takes the derivative of the sigmoid function to calculate necessary weight adjustments
+        # print(x * (1 - x))
         return x * (1 - x)
 
     def train(self, training_inputs, training_outputs, training_iterations):
@@ -66,23 +78,34 @@ class NeuralNetwork():
 
             # Calculate error rate
             error = training_outputs - output
+            # print(error)
 
             # Multiply error by input and gradient of sigmoid function
             # Less confident weights are adjusted more through the nature of the function
-            adjustments = np.dot(training_inputs.T, error * self.sigmoid_derivative(output))
+            # print(training_inputs.T)
+            # print(self.sigmoid_derivative(output))
+            # print([decimal.Decimal(x,y) for (x,y) in self.sigmoid_derivative(output)])
+            # print('error:', error)
+            # print('sigmoid', self.sigmoid_derivative(output))
+            blah = error * self.sigmoid_derivative(output)
+            adjustments = np.dot(training_inputs.T, blah)
 
             #Adjust synaptic weights
             self.synaptic_weights += adjustments
 
     def think(self, inputs):
         # Pass inputs through the neural network to get output
-        
-        inputs = inputs.astype(float)
+        # inputs = [decimal.Decimal(x) for x in inputs]
+        # print('inputs:')
+        # print(inputs)
         output = self.sigmoid(np.dot(inputs, self.synaptic_weights))
+        # print("outputs: ")
+        # print(output)
         return output
 
+
 if __name__ == "__main__":
-    # compare_two_teams(8, 3, 20162017)
+    compare_two_teams(8, 3, 20162017)
 
     # Initialize the single neuron neural network
     neural_network = NeuralNetwork()
@@ -212,145 +235,141 @@ if __name__ == "__main__":
         compare_two_teams(9, 5, 20162017),
         compare_two_teams(18, 24, 20162017),
         compare_two_teams(5, 18, 20162017),
-                                ])
+    ])
+
+    # print('training_inputs variable:', training_inputs)
 
     training_outputs = np.array([
-        [0,1],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [0,1],
-        [1,0],
-        [1,0],
-
-        [1,0],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [1,0],
-        [0,1],
-        [1,0],
-        [0,1],
-
-        [1,0],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [1,0],
-        [0,1],
-
-        [1,0],
-        [0,1],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [1,0],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-
-        [1,0],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [1,0],
-        [0,1],
-        [0,1],
-        [1,0],
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [0,1],
-        [1,0],
-
-        [0,1],
-        [1,0],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [0,1],
-        [0,1],
-        [1,0],
-        [1,0],
-        [0,1],
-        [1,0],
-        [1,0],
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (0,1),
+        (1,0),
+        (0,1),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (1,0),
+        (0,1),
+        (1,0),
+        (0,1),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (0,1),
+        (1,0),
+        (0,1),
+        (1,0),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (0,1),
+        (0,1),
+        (1,0),
+        (1,0),
+        (0,1),
+        (1,0),
+        (1,0),
         ])
 
     # Train the neural network
-    neural_network.train(training_inputs, training_outputs, 10000)
+    neural_network.train(training_inputs, training_outputs, 100)
 
     print("Synaptic weights after training: ")
     print(neural_network.synaptic_weights)
 
     # A = [-0.146,-0.146,0.0903,-2.2,0.1,-0.4,0.006,-0.095,-0.083]
-    A = [compare_two_teams(14, 1, 20172018)]
+    A = [compare_two_teams(6, 10, 20172018)]
     print("Expected output: ")
     print([1,0])
     print("Output data: ")
