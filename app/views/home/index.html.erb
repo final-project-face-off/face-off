@@ -1,28 +1,33 @@
 <header class="masthead">
   <div class="container h-100 d-flex justify-content-center">
     <div class="jumbotron my-auto">
-      <div class="sim-matchup">
-        <div class="team-selection">
-          <div class="logo-container">
-            <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team1" %>
+      <%= form_tag("/faceoff_results", method: "post") do %>
+        <div class="sim-matchup">
+
+          <div class="team-selection">
+            <div class="logo-container">
+              <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team1" %>
+            </div>
+              <%= select_tag 'team1_id', options_from_collection_for_select(Team.all, :id, :name), { :prompt => "Select a Team", :onchange => "changeLogo1(this.value)" } %>
           </div>
-          <div class="form-group">
-            <%= select_tag 'team_1', options_from_collection_for_select(Team.all, :id, :name), { :prompt => "Select a Team", :onchange => "changeLogo1(this.value)" } %>
+
+          <div class="team-selection"> <h1> VS </h1>
           </div>
+
+          <div class="team-selection">
+            <div class="logo-container">
+              <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team2" %>
+            </div>
+              <%= select_tag 'team2_id', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select a Team", :onchange => "changeLogo2(this.value)" %>
+          </div>
+
         </div>
-        <div class="team-selection"> <h1> VS </h1> </div>
-        <div class="team-selection">
-          <div class="logo-container">
-            <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team2" %>
-          </div>
-          <div class="form-group">
-            <%= select_tag 'team_2', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select a Team", :onchange => "changeLogo2(this.value)" %>
-          </div>
+
+        <div class="run-sim-submit">
+          <%= button_tag 'FACE OFF', :class => "btn btn-primary" %>
         </div>
-      </div>
-      <div class="run-sim-submit">
-        <input class="btn btn-primary" type="submit" value="Submit">
-      </div>
+
+      <% end %>
     </div>
   </div>
 </header>

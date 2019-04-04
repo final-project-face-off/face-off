@@ -2,17 +2,12 @@ Rails.application.routes.draw do
 
  root to: 'home#index'
 
-  # THIS DOESN'T WORK
-  # namespace :api do
-  #   namespace :v1 do
-  #     resources :teams, only: [:index, :show]
-  #   end
-  # end
-
   resources :teams, only: [:index, :show]
+
   resources :games, only: [:index, :show]
 
-  
+  resources :faceoff_results, only: [:create, :show]
+
   get '/charts' => 'charts#show'
   get '/compare' => 'comparisons#show'
 
