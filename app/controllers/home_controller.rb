@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @games = Game.all
+    @teams = Team.all
+    @games = Game.where(status: 'Scheduled')
   end
 end

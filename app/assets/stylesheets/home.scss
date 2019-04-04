@@ -15,6 +15,7 @@ body {
   background-size: cover;
   background-position: center;
   z-index: -1;
+  margin-top: -5px;
 
   // feature box
   .jumbotron {
@@ -23,12 +24,38 @@ body {
     min-height: 15rem;
     border-radius: 2rem;
 
-    .sim-logo{
-      border-radius: 75%;
-      width: 7em;
-      height: 7em;
-      object-fit: contain;
-      background: white;
+    .sim-matchup {
+      display: flex;
+
+      .team-selection {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1em;
+
+        .logo-container {
+          display: flex;
+          position: relative;
+          width: 10em;
+          height: 10em;
+          overflow: hidden;
+          border-radius: 50%;
+          background: white;
+          margin: 2em auto;
+
+          .team-logo {
+            width: auto;
+            height: 60%;
+            display: block;
+            margin: auto;
+          }
+        }
+      }
+    }
+
+    .run-sim-submit {
+      display: flex;
+      justify-content: center;
     }
   }
 }
@@ -40,4 +67,8 @@ body {
   text-align: center;
   padding-top: .2em 0;
   margin: 0;
+}
+
+.games-container {
+  padding: 2em;
 }
