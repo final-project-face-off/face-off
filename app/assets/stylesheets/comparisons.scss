@@ -38,7 +38,7 @@ body {
 
 .entry-title {
   background: #53CFE9;
-  height: 140px;
+  height: 170px;
   position: relative;
   text-align: center;
   color: #fff;
@@ -119,6 +119,10 @@ border: #ffffff;
 
 .vs-butt>h1:hover {
     color: #004085;
+}
+
+.vs-butt:focus {
+    outline: none;
 }
 
 .basic {
