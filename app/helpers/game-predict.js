@@ -1,13 +1,23 @@
 function randomWin(win_percent) {
+  var winTotal = 0
+  var gameTotal = 0
 
-  var random = Math.random() < 0.7;
-  return random
-  // if (random > 50) {
-  //   return "win"
-  // } else {
-  //   return "lose"
-  // }
+  while ( gameTotal < 7 ) {
+    var win = Math.random() < win_percent;
+    gameTotal++
+
+    if (win && winTotal === 3) {
+      winTotal = 4
+      return [winTotal, gameTotal]
+    } else if (win) {
+        winTotal++
+    }
+  }
+
+  return [winTotal, gameTotal]
 
 }
 
-console.log(randomWin(.88))
+console.log(randomWin(.60))
+
+console.log(Math.random())
