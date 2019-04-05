@@ -1,3 +1,62 @@
-<h1>Faceoff Result Page</h1>
+<header class="masthead">
+  <div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
 
-<%= @faceoff_result.team1_id %>
+      <div class="win-header">
+        <h2>This Team Wins!</h2>
+      </div>
+
+        <div class="sim-results">
+
+          <div class="team-results">
+            <div class="logo-container">
+              <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team1" %>
+            </div>
+            <h5>Team Name</h5>
+            <h2>90%</h2>
+          </div>
+
+          <div class="team-results">
+            <h4> Chance of Winning </h4>
+            <p> Mean Absolute Error 0.3 </p>
+          </div>
+
+          <div class="team-results">
+            <div class="logo-container">
+              <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team2" %>
+            </div>
+            <h5>Team Name</h5>
+            <h2>90%</h2>
+          </div>
+
+        </div>
+
+        <div class="series-results">
+          <p>This Team wins the series in 5 games</p>
+        </div>
+
+    </div>
+  </div>
+</header>
+
+<div class="div-header">
+<h5>SCOREBOARD</h5>
+</div>
+<div class="games-container">
+<h5>Game Results</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Game Date</th>
+          <th scope="col">Away</th>
+          <th scope="col"></th>
+          <th scope="col">Score</th>
+          <th scope="col"></th>
+          <th scope="col">Home</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @games %>
+      </tbody>
+    </table>
+</div>

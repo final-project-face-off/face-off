@@ -24,6 +24,8 @@ class FaceoffResultsController < ApplicationController
 
   def show
     @faceoff_result = FaceoffResult.find (params[:id])
+    @teams = Team.all
+    @games = Game.where(status: 'Final')
   end
 
   private
