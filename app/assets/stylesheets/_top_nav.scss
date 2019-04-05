@@ -2,3 +2,22 @@
 #top_nav {
     border-bottom: 1px solid #ced6de;
 }
+
+.navbar{
+  width: auto;
+  z-index: 10;
+  right: 0px;
+  left: 0px;
+  min-height: 32px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+.navbar-nav > li > a {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+.navbar-brand {
+  font-size: 12px !important;
+}

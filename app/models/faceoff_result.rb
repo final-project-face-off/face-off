@@ -1,0 +1,2 @@
+class FaceoffResult < ApplicationRecord
+end

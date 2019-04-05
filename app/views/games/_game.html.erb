@@ -1,16 +1,21 @@
 <tr>
   <td>
-  <%= game.gameDate %>
+    <%= game.gameDate %>
   </td>
   <td>
     <%= image_tag("logo-#{game.awayID}.png", height: '32') %>
     <%= link_to "#{game.awayName}", team_path(game.awayID) %>
   </td>
+  <td><h5><%= game.awayScore %></h5></td>
   <td>
-    <p> vs </p>
+    <h5>vs</h5>
   </td>
+  <td><h5><%= game.homeScore %></h5></td>
   <td>
     <%= image_tag("logo-#{game.homeID}.png", height: '32') %>
     <%= link_to "#{game.homeName}", team_path(game.homeID) %>
   </td>
+
+
+
 </tr>

@@ -1,19 +1,28 @@
-
-<nav class="navbar fixed-top navbar-light bg-light" id="top_nav">
-<a class="navbar-brand" href="/">Face_Off</a>
-
-<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default"><a href="/">Home</button>
-  <button type="button" class="btn btn-default"><a href="/charts">Charts</button>
-  <button type="button" class="btn btn-default"><a href="/compare">Compare Teams</a></button>
-</div>
-
-
-<div>
-<% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-<% end %>
-</div>
+<nav class="navbar fixed-top navbar-expand navbar-light bg-light" id="top_nav">
+  <a class="navbar-brand" href="/">Face_Off</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/teams">Teams</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/compare">Compare</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/charts">Charts</a>
+      </li>
+    </ul>
+    <% if current_user %>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+        <% else %>
+        <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+      </li>
+    </ul>
+    <% end %>
+  </div>
 </nav>

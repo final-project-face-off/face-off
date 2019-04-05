@@ -1,0 +1,61 @@
+<header class="masthead">
+  <div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+
+      <div class="win-header">
+        <h2><%= @team1.name %> Win!</h2>
+      </div>
+
+      <div class="sim-results">
+
+        <div class="team-results">
+          <div class="r-logo-container">
+            <%= image_tag ("logo-#{@team1.id}.png"), :class => "team-logo", :id => "team1" %>
+          </div>
+          <div class="winning-team">
+            <h5><%= @team1.name %></h5>
+            <h2><%= (@faceoff_result.team1_percent_chance_win * 100).round %>%</h2>
+          </div>
+        </div>
+
+        <div class="team-results-data">
+          <h4> Chance of Winning </h4>
+          <p> Mean Absolute Error <%= @faceoff_result.mean_absolute_error %></p>
+        </div>
+
+        <div class="team-results">
+          <div class="r-logo-container">
+            <%= image_tag ("logo-#{@team2.id}.png"), :class => "team-logo", :id => "team2" %>
+          </div>
+          <h5><%= @team2.name %></h5>
+          <h2><%= (@faceoff_result.team2_percent_chance_win * 100).round %>%</h2>
+        </div>
+
+      </div>
+
+      <div class="series-results">
+        <h5><%= @team1.name %> win the series in 5 games</h5>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<div class="games-container">
+<h5>Game Results</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Game Date</th>
+          <th scope="col">Away</th>
+          <th scope="col"></th>
+          <th scope="col">Score</th>
+          <th scope="col"></th>
+          <th scope="col">Home</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @games %>
+      </tbody>
+    </table>
+</div>

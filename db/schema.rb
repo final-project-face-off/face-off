@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_213303) do
+ActiveRecord::Schema.define(version: 2019_04_04_164330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "faceoff_results", force: :cascade do |t|
+    t.integer "team1_id"
+    t.decimal "team1_percent_chance_win", precision: 10, scale: 2
+    t.integer "team2_id"
+    t.decimal "team2_percent_chance_win", precision: 10, scale: 2
+    t.decimal "mean_absolute_error", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.date "gameDate"
