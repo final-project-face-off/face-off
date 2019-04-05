@@ -33,3 +33,5 @@
 # Ignore the .env file with all private database access info
 
 .env
+
+.DS_Store

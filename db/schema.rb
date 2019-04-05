@@ -81,32 +81,31 @@ ActiveRecord::Schema.define(version: 2019_04_04_164330) do
     t.integer "losses"
     t.integer "ot"
     t.integer "pts"
-    t.decimal "ptPctg", precision: 10, scale: 2
-    t.decimal "goalsPerGame", precision: 10, scale: 2
-    t.decimal "goalsAgainstPerGame", precision: 10, scale: 2
-    t.decimal "evGGARatio", precision: 10, scale: 2
-    t.decimal "powerPlayPercentage", precision: 10, scale: 2
+    t.decimal "ptPctg", precision: 4, scale: 2
+    t.decimal "goalsPerGame", precision: 4, scale: 2
+    t.decimal "goalsAgainstPerGame", precision: 4, scale: 2
+    t.decimal "evGGARatio", precision: 4, scale: 2
+    t.decimal "powerPlayPercentage", precision: 4, scale: 2
     t.integer "powerPlayGoals"
     t.integer "powerPlayGoalsAgainst"
     t.integer "powerPlayOpportunities"
-    t.decimal "penaltyKillPercentage", precision: 10, scale: 2
-    t.decimal "shotsPerGame", precision: 10, scale: 2
-    t.decimal "shotsAllowed", precision: 10, scale: 2
-    t.decimal "winScoreFirst", precision: 10, scale: 2
-    t.decimal "winOppScoreFirst", precision: 10, scale: 2
-    t.decimal "winLeadFirstPer", precision: 10, scale: 2
-    t.decimal "winLeadSecondPer", precision: 10, scale: 2
-    t.decimal "winOutshootOpp", precision: 10, scale: 2
-    t.decimal "winOutshotByOpp", precision: 10, scale: 2
-    t.integer "faceOffsTaken"
+    t.decimal "penaltyKillPercentage", precision: 4
+    t.decimal "shotsPerGame", precision: 4
+    t.decimal "shotsAllowed", precision: 4
+    t.decimal "winScoreFirst", precision: 4
+    t.decimal "winOppScoreFirst", precision: 4
+    t.decimal "winLeadFirstPer", precision: 4
+    t.decimal "winLeadSecondPer", precision: 4
+    t.decimal "winOutshootOpp", precision: 4
+    t.decimal "winOutshotByOpp", precision: 4
+    t.decimal "faceOffsTaken", precision: 4
     t.integer "faceOffsWon"
     t.integer "faceOffsLost"
-    t.decimal "faceOffWinPercentage", precision: 10, scale: 2
-    t.decimal "shootingPctg", precision: 10, scale: 2
-    t.decimal "savePctg", precision: 10, scale: 2
+    t.decimal "faceOffWinPercentage", precision: 4
+    t.decimal "shootingPctg", precision: 4
+    t.decimal "savePctg", precision: 4
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "season"
     t.integer "team_id"
   end
 

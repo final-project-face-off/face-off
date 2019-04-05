@@ -1,7 +1,17 @@
-<%= bar_chart @teams.group('wins').order('wins Desc').limit(5).count %>
 
-<%= pie_chart @teams.limit(5).group('name').sum('wins') %>
+<%= line_chart PastTeam.where(team_id: [1,2]).where(season: [20152016,20162017,20172018]).group('name').group('season').sum('wins'), title: "Past Season Win Trend" %>
 
-<%= column_chart @teams.limit(10).group('name').sum('wins') %>
+<%= line_chart PastTeam.where(team_id: [1,2]).group('name').group('season').sum('goalsPerGame'), title: "Past Season Goals Trend" %>
 
-<%= scatter_chart @teams.pluck('wins', 'goalsPerGame'), xtitle: "Wins", ytitle: "Goals / Game" %>
+<%= bar_chart Team.group('wins').order('wins Desc').limit(5).count%>
+
+<%= pie_chart Team.limit(5).group('name').sum('wins'), title: "Wins by Team" %>
+
+<%= scatter_chart Team.pluck('wins', 'goalsPerGame'), xtitle: "Wins", ytitle: "Goals / Game" %>
+
+<%= column_chart Team.limit(10).group('name').sum('wins'), title: "Wins by Team" %>
+
+<%= column_chart Team.where(id: [1,2]).group('name').sum('wins'), title: "Compare Wins" %>
+
+
+

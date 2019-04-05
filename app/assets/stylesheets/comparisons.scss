@@ -38,7 +38,7 @@ body {
 
 .entry-title {
   background: #53CFE9;
-  height: 140px;
+  height: 170px;
   position: relative;
   text-align: center;
   color: #fff;
@@ -121,6 +121,10 @@ border: #ffffff;
     color: #004085;
 }
 
+.vs-butt:focus {
+    outline: none;
+}
+
 .basic {
     display: block;
 }
@@ -145,6 +149,10 @@ border: #ffffff;
 .standard .entry-title {
     display: block;
     background-image: url('/assets/scratched_ice_Preview.jpg');
+}
+
+.compare_chart {
+    width: 24%;
 }
 
 
