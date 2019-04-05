@@ -4,8 +4,10 @@ import psycopg2
 from dotenv import load_dotenv
 import os
 import decimal 
-from sklearn.metrics import mean_absolute_error
 load_dotenv()
+
+EPOCHS = 1000
+LEARNING_RATE = [decimal.Decimal('0.1')]
 
 # Calculate mean absolute error
 def mae_metric(actual, predicted):
@@ -55,7 +57,7 @@ class NeuralNetwork():
 
         # Set synaptic weights to a 9x1 matrix (since 9 is the number of variables taken into account)
         # Synaptic weights are set to values from -1 to 1 and mean 0
-        self.result = 2 * np.random.random((9, 1)) - 1
+        self.result = 2* np.random.random((9, 1)) - 1
         self.synaptic_weights = [[decimal.Decimal(y) for y in x] for x in self.result]
 
     def sigmoid(self, x):
@@ -64,29 +66,22 @@ class NeuralNetwork():
 
     def sigmoid_derivative(self, x):
         # Takes the derivative of the sigmoid function to calculate necessary weight adjustments
-        # print(x * (1 - x))
         return x * (1 - x)
 
     def train(self, training_inputs, training_outputs, training_iterations):
         # Train the model through trial and error, adjusting synaptic weights each time
-
         for iteration in range(training_iterations):
+            # print("iteration: ", iteration)
+
             # Pass training set through neural network
             output = self.think(training_inputs)
 
             # Calculate error rate
             error = training_outputs - output
-            # print("Error rate: ")
-            # print(error)
 
             # Multiply error by input and gradient of sigmoid function
             # Less confident weights are adjusted more through the nature of the function
-            # print(training_inputs.T)
-            # print(self.sigmoid_derivative(output))
-            # print([decimal.Decimal(x,y) for (x,y) in self.sigmoid_derivative(output)])
-            # print('error:', error)
-            # print('sigmoid', self.sigmoid_derivative(output))
-            p = error * self.sigmoid_derivative(output)
+            p = LEARNING_RATE * error * self.sigmoid_derivative(output)
             adjustments = np.dot(training_inputs.T, p)
 
             #Adjust synaptic weights
@@ -94,21 +89,14 @@ class NeuralNetwork():
 
     def think(self, inputs):
         # Pass inputs through the neural network to get output
-        # inputs = [decimal.Decimal(x) for x in inputs]
-        # print('inputs:')
-        # print(inputs)
         output = self.sigmoid(np.dot(inputs, self.synaptic_weights))
-        # print("outputs: ")
-        # print(output)
         return output
 
     def results(self, predicted, mae, loss):
-        print("returned!")
         return {'predicted': predicted, 'mae': mae, 'loss': loss}
 
 
 if __name__ == "__main__":
-    # compare_two_teams(8, 3, 20162017)
 
     # Initialize the single neuron neural network
     neural_network = NeuralNetwork()
@@ -240,160 +228,145 @@ if __name__ == "__main__":
         compare_two_teams(5, 18, 20162017),
     ])
 
-    # print('training_inputs variable:', training_inputs)
-
-    training_outputs = np.array([
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (0,1),
-        (1,0),
-        (0,1),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (1,0),
-        (0,1),
-        (1,0),
-        (0,1),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (0,1),
-        (1,0),
-        (0,1),
-        (1,0),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (0,1),
-        (0,1),
-        (1,0),
-        (1,0),
-        (0,1),
-        (1,0),
-        (1,0),
-        ])
+    training_outputs = np.array([[
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+    ]]).T
 
     # Train the neural network
-    neural_network.train(training_inputs, training_outputs, 1000)
+    neural_network.train(training_inputs, training_outputs, EPOCHS)
 
-    print("Synaptic weights after training: ")
-    print(neural_network.synaptic_weights)
+    # print("Synaptic weights after training: ")
+    # print(neural_network.synaptic_weights)
 
-    # A = [-0.146,-0.146,0.0903,-2.2,0.1,-0.4,0.006,-0.095,-0.083]
-    A = [
-        compare_two_teams(14, 1, 20172018),
-        compare_two_teams(6, 10, 20172018),
-        compare_two_teams(15, 29, 20172018),
-        compare_two_teams(5, 4, 20172018),
-        compare_two_teams(18, 21, 20172018),
-        compare_two_teams(52, 30, 20172018),
-        compare_two_teams(54, 26, 20172018),
-        compare_two_teams(24, 28, 20172018)
-    ]
-    print("Expected output: ")
-    resultsArray = [[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[0,1]]
-    expected = [[[decimal.Decimal(y) for y in x] for x in resultsArray]]
-    print(expected)
-    print("Output data: ")
-    predicted = neural_network.think(np.array([A]))
-    print(neural_network.think(np.array([A])))
-    # Test RMSE
-    # actual = expected
-    mae = mae_metric(expected, predicted)
+    A = [compare_two_teams(14, 1, 20172018)]
+    # print("Expected output: ")
+    resultsArray = np.array([[1]]).T
+
+    predicted = neural_network.think(np.array(A))
+    print("Output data: ", predicted)
+
+    mae = mae_metric(resultsArray, predicted)
     print("MAE: \n", mae)
-    loss = str(np.mean(np.square(expected - predicted)))
+    loss = str(np.mean(np.square(resultsArray - predicted)))
     print ("Loss: \n", loss)
     neural_network.results(predicted, mae, loss) 
     
