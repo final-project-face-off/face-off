@@ -1,6 +1,11 @@
 <header class="masthead">
   <div class="container h-100 d-flex justify-content-center">
     <div class="jumbotron my-auto">
+
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+
       <%= form_tag("/faceoff_results", method: "post") do %>
         <div class="sim-matchup">
 

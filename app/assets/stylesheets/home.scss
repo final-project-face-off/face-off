@@ -19,12 +19,30 @@ body {
   margin-top: -5px;
   border-bottom: 1px solid #ced6de;
 
+  // .video {
+  //   position: fixed;
+  //   top: 50%;
+  //   left: 50%;
+  //   z-index: -1;
+  //   min-width: 100%;
+  //   width: auto;
+  //   height: auto;
+  //   transform: translate(-50%, -50%);
+  //   margin-top: -42px;
+  // }
+
   // feature box
   .jumbotron {
     padding: 1rem 2rem;
     min-width: 22rem;
     min-height: 15rem;
     border-radius: 2rem;
+
+    .alert {
+      z-index: 12;
+      display: flex;
+      margin: 0;
+    }
 
     .sim-matchup {
       display: flex;
@@ -68,4 +86,5 @@ body {
 
 .games-container {
   padding: 2em;
+  background: white;
 }

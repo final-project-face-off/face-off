@@ -4,9 +4,6 @@ class FaceoffResultsController < ApplicationController
     @season = 20182019
     @team1_id = params[:team1_id]
     @team2_id = params[:team2_id]
-    @team1_percent_chance_win = 0
-    @team2_percent_chance_win = 0
-    @mean_absolute_error = 0
 
     calculation = python(@season, @team1_id, @team2_id)
 
@@ -17,9 +14,12 @@ class FaceoffResultsController < ApplicationController
     @faceoff_result.team2_percent_chance_win = calculation[1]
     @faceoff_result.mean_absolute_error = calculation[2]
 
-    @faceoff_result.save
-
-    redirect_to faceoff_result_path(@faceoff_result.id)
+    if @faceoff_result.save
+      redirect_to faceoff_result_path(@faceoff_result.id)
+    else
+      flash[:danger] = 'Error: Please Select 2 Teams'
+      redirect_to "/"
+    end
   end
 
   def show
