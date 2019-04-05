@@ -6,18 +6,18 @@
 
 body {
   font-size: 10px;
+  margin: 0;
 }
 
 // background
 .masthead {
-  height: 70vh;
+  height: 75vh;
   background-image: image-url("rink-faceoff.jpg");
   background-size: cover;
   background-position: center;
   z-index: -1;
   margin-top: -5px;
   border-bottom: 1px solid #ced6de;
-
 
   // feature box
   .jumbotron {

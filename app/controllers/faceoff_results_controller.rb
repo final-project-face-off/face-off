@@ -24,7 +24,8 @@ class FaceoffResultsController < ApplicationController
 
   def show
     @faceoff_result = FaceoffResult.find (params[:id])
-    @teams = Team.all
+    @team1 = Team.find (@faceoff_result.team1_id)
+    @team2 = Team.find (@faceoff_result.team2_id)
     @games = Game.where(status: 'Final')
   end
 
@@ -34,3 +35,11 @@ class FaceoffResultsController < ApplicationController
     calcArr = [0.9, 0.1, 0.2]
   end
 end
+
+# TODO
+
+# Mean Absolute Error format??
+# Error handling for no selection (required input values)
+# Logic to show if team1 or team2 wins
+# Logic to predict series outcome
+# Integrate python "app"

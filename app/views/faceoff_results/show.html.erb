@@ -3,45 +3,44 @@
     <div class="jumbotron my-auto">
 
       <div class="win-header">
-        <h2>This Team Wins!</h2>
+        <h2><%= @team1.name %> Win!</h2>
       </div>
 
-        <div class="sim-results">
+      <div class="sim-results">
 
-          <div class="team-results">
-            <div class="logo-container">
-              <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team1" %>
-            </div>
-            <h5>Team Name</h5>
-            <h2>90%</h2>
+        <div class="team-results">
+          <div class="r-logo-container">
+            <%= image_tag ("logo-#{@team1.id}.png"), :class => "team-logo", :id => "team1" %>
           </div>
-
-          <div class="team-results">
-            <h4> Chance of Winning </h4>
-            <p> Mean Absolute Error 0.3 </p>
+          <div class="winning-team">
+            <h5><%= @team1.name %></h5>
+            <h2><%= (@faceoff_result.team1_percent_chance_win * 100).round %>%</h2>
           </div>
-
-          <div class="team-results">
-            <div class="logo-container">
-              <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team2" %>
-            </div>
-            <h5>Team Name</h5>
-            <h2>90%</h2>
-          </div>
-
         </div>
 
-        <div class="series-results">
-          <p>This Team wins the series in 5 games</p>
+        <div class="team-results-data">
+          <h4> Chance of Winning </h4>
+          <p> Mean Absolute Error <%= @faceoff_result.mean_absolute_error %></p>
         </div>
+
+        <div class="team-results">
+          <div class="r-logo-container">
+            <%= image_tag ("logo-#{@team2.id}.png"), :class => "team-logo", :id => "team2" %>
+          </div>
+          <h5><%= @team2.name %></h5>
+          <h2><%= (@faceoff_result.team2_percent_chance_win * 100).round %>%</h2>
+        </div>
+
+      </div>
+
+      <div class="series-results">
+        <h5><%= @team1.name %> win the series in 5 games</h5>
+      </div>
 
     </div>
   </div>
 </header>
 
-<div class="div-header">
-<h5>SCOREBOARD</h5>
-</div>
 <div class="games-container">
 <h5>Game Results</h5>
     <table class="table">

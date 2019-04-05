@@ -10,11 +10,11 @@ body {
 
 .win-header {
   text-align: center;
-  padding: 1em;
 }
 
 .sim-results {
   display: flex;
+  justify-content: center;
 
   .team-results {
     display: flex;
@@ -22,8 +22,9 @@ body {
     justify-content: center;
     text-align: center;
     padding: 1em;
+    flex-basis: 0;
 
-    .logo-container {
+    .r-logo-container {
       display: flex;
       position: relative;
       width: 10em;
@@ -31,7 +32,7 @@ body {
       overflow: hidden;
       border-radius: 50%;
       background: white;
-      margin: 2em auto;
+      margin: auto auto 1em auto;
 
       .team-logo {
         width: auto;
@@ -40,13 +41,29 @@ body {
         margin: auto;
       }
     }
+
+    .winning-team {
+      color: red;
+    }
+  }
+  .team-results-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 1em;
+    flex-basis: 50%;
   }
 }
-
 
 .series-results {
   display: flex;
   justify-content: center;
+
+  h5 {
+    margin: 0;
+  }
+
 }
 
 .div-header {
