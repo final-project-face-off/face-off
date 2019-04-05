@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-
-ActiveRecord::Schema.define(version: 2019_04_02_152729) do
+ActiveRecord::Schema.define(version: 2019_04_04_164330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "faceoff_results", force: :cascade do |t|
+    t.integer "team1_id"
+    t.decimal "team1_percent_chance_win", precision: 10, scale: 2
+    t.integer "team2_id"
+    t.decimal "team2_percent_chance_win", precision: 10, scale: 2
+    t.decimal "mean_absolute_error", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.date "gameDate"
@@ -29,16 +36,6 @@ ActiveRecord::Schema.define(version: 2019_04_02_152729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
-  end
-
-  create_table "migrations", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
-    t.integer "batch"
-    t.datetime "migration_time"
-  end
-
-  create_table "migrations_lock", id: false, force: :cascade do |t|
-    t.integer "is_locked"
   end
 
   create_table "past_teams", force: :cascade do |t|
@@ -84,31 +81,32 @@ ActiveRecord::Schema.define(version: 2019_04_02_152729) do
     t.integer "losses"
     t.integer "ot"
     t.integer "pts"
-    t.decimal "ptPctg", precision: 4, scale: 2
-    t.decimal "goalsPerGame", precision: 4, scale: 2
-    t.decimal "goalsAgainstPerGame", precision: 4, scale: 2
-    t.decimal "evGGARatio", precision: 4, scale: 2
-    t.decimal "powerPlayPercentage", precision: 4, scale: 2
+    t.decimal "ptPctg", precision: 10, scale: 2
+    t.decimal "goalsPerGame", precision: 10, scale: 2
+    t.decimal "goalsAgainstPerGame", precision: 10, scale: 2
+    t.decimal "evGGARatio", precision: 10, scale: 2
+    t.decimal "powerPlayPercentage", precision: 10, scale: 2
     t.integer "powerPlayGoals"
     t.integer "powerPlayGoalsAgainst"
     t.integer "powerPlayOpportunities"
-    t.decimal "penaltyKillPercentage", precision: 4
-    t.decimal "shotsPerGame", precision: 4
-    t.decimal "shotsAllowed", precision: 4
-    t.decimal "winScoreFirst", precision: 4
-    t.decimal "winOppScoreFirst", precision: 4
-    t.decimal "winLeadFirstPer", precision: 4
-    t.decimal "winLeadSecondPer", precision: 4
-    t.decimal "winOutshootOpp", precision: 4
-    t.decimal "winOutshotByOpp", precision: 4
-    t.decimal "faceOffsTaken", precision: 4
+    t.decimal "penaltyKillPercentage", precision: 10, scale: 2
+    t.decimal "shotsPerGame", precision: 10, scale: 2
+    t.decimal "shotsAllowed", precision: 10, scale: 2
+    t.decimal "winScoreFirst", precision: 10, scale: 2
+    t.decimal "winOppScoreFirst", precision: 10, scale: 2
+    t.decimal "winLeadFirstPer", precision: 10, scale: 2
+    t.decimal "winLeadSecondPer", precision: 10, scale: 2
+    t.decimal "winOutshootOpp", precision: 10, scale: 2
+    t.decimal "winOutshotByOpp", precision: 10, scale: 2
+    t.integer "faceOffsTaken"
     t.integer "faceOffsWon"
     t.integer "faceOffsLost"
-    t.decimal "faceOffWinPercentage", precision: 4
-    t.decimal "shootingPctg", precision: 4
-    t.decimal "savePctg", precision: 4
+    t.decimal "faceOffWinPercentage", precision: 10, scale: 2
+    t.decimal "shootingPctg", precision: 10, scale: 2
+    t.decimal "savePctg", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "season"
     t.integer "team_id"
   end
 

@@ -1,3 +1,5 @@
+require 'open3'
+
 class FaceoffResultsController < ApplicationController
 
   def create
@@ -37,6 +39,10 @@ class FaceoffResultsController < ApplicationController
   private
 
   def python (season, team1, team2)
+    output, status = Open3.capture2("algo/neuralnet.py", "#{season}", "#{team1}", "#{team2}")
+    puts "*****************"
+    puts output
+    puts "*****************"
     { predicted: [0.51, 0.49], loss: 0.56 }
   end
 

@@ -3,11 +3,15 @@ import numpy as np
 import psycopg2
 from dotenv import load_dotenv
 import os
-import decimal 
+import decimal
+import sys
 load_dotenv()
 
 EPOCHS = 1000
 LEARNING_RATE = [decimal.Decimal('0.1')]
+TEAM_ID_1 = sys.argv[1]
+TEAM_ID_2 = sys.argv[2]
+SEASON = sys.argv[3]
 
 # Calculate mean absolute error
 def mae_metric(actual, predicted):
@@ -24,7 +28,7 @@ def get_past_team_stats(id, season):
                                   host = os.getenv("DB_HOST"),
                                   port = os.getenv("DB_PORT"),
                                   database = os.getenv("DB_NAME"))
-                                  
+
         cursor = connection.cursor()
         # Print PostgreSQL Connection properties
         # print ( connection.get_dsn_parameters(),"\n")
@@ -106,11 +110,11 @@ if __name__ == "__main__":
 
     # The training set, with 4 examples of 9 input values and 1 output value
     training_inputs = np.array([
-        compare_two_teams(15, 8, 20092010), 
-        compare_two_teams(1, 4, 20092010), 
-        compare_two_teams(7, 6, 20092010), 
-        compare_two_teams(5, 9, 20092010), 
-        compare_two_teams(28, 21, 20092010), 
+        compare_two_teams(15, 8, 20092010),
+        compare_two_teams(1, 4, 20092010),
+        compare_two_teams(7, 6, 20092010),
+        compare_two_teams(5, 9, 20092010),
+        compare_two_teams(28, 21, 20092010),
         compare_two_teams(16, 18, 20092010),
         compare_two_teams(23, 26, 20092010),
         compare_two_teams(27, 17, 20092010),
@@ -357,6 +361,9 @@ if __name__ == "__main__":
     # print("Synaptic weights after training: ")
     # print(neural_network.synaptic_weights)
 
+    A = [compare_two_teams(TEAM_ID_1, TEAM_ID_2, SEASON)]
+    print(TEAM_ID_1, TEAM_ID_2, SEASON)
+
     A = [compare_two_teams(14, 1, 20172018)]
     # print("Expected output: ")
     resultsArray = np.array([[1]]).T
@@ -368,7 +375,7 @@ if __name__ == "__main__":
     print("MAE: \n", mae)
     loss = str(np.mean(np.square(resultsArray - predicted)))
     print ("Loss: \n", loss)
-    neural_network.results(predicted, mae, loss) 
-    
-   
+    neural_network.results(predicted, mae, loss)
+
+
 
