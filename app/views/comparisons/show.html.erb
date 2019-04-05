@@ -155,7 +155,7 @@
             <%= column_chart [{name: "Goals For", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsPerGame')}, {name: "/ Against", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsAgainstPerGame')}], title: "Goals per Game", colors: ["#aee08d", "#d1664b"] %>
         </div>
         <div class="compare_chart">
-            <%= line_chart PastTeam.where(team_id: [@team1.id,@team2.id]).group('name').group('season').sum('wins'), title: "Past Season Win Trend", colors: ["#aee08d", "#7aa7ef"]%>      
+            <%= line_chart PastTeam.where(team_id: [@team1.id,@team2.id]).group('name').group('season').sum('wins'), title: "Past Season Win Trend", colors: ["#aee08d", "#7aa7ef"], discrete: true%>      
         </div>  
     </div>
 </div>  

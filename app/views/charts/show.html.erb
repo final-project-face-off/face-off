@@ -1,7 +1,8 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
-<%= line_chart PastTeam.where(team_id: [1,2]).where(season: [20152016,20162017,20172018]).group('name').group('season').sum('wins'), title: "Past Season Win Trend" %>
+<%= line_chart PastTeam.where(team_id: [1,2]).where(season: [20152016,20162017,20172018]).group('name').group('season').sum('wins'), title: "Past Season Win Trend", discrete: true %>
 
-<%= line_chart PastTeam.where(team_id: [1,2]).group('name').group('season').sum('goalsPerGame'), title: "Past Season Goals Trend" %>
+<%= line_chart PastTeam.where(team_id: [1,2]).group('name').group('season').sum('goalsPerGame'), title: "Past Season Goals Trend", discrete: true %>
 
 <%= bar_chart Team.group('wins').order('wins Desc').limit(5).count%>
 
