@@ -1,9 +1,18 @@
+#!/usr/bin/env python3
 import numpy as np
 import psycopg2
 from dotenv import load_dotenv
 import os
 import decimal 
+from sklearn.metrics import mean_absolute_error
 load_dotenv()
+
+# Calculate mean absolute error
+def mae_metric(actual, predicted):
+	sum_error = decimal.Decimal('0.0')
+	for i in range(len(actual)):
+		sum_error += abs(predicted[i] - actual[i])
+	return sum_error / decimal.Decimal(len(actual))
 
 # Helper function to get past team stats based on team id and season
 def get_past_team_stats(id, season):
@@ -33,12 +42,9 @@ def get_past_team_stats(id, season):
                 # print("PostgreSQL connection is closed")
 
 def compare_two_teams(id_1, id_2, season):
-    # print('args: ', id_1, id_2, season)
     team_1 = get_past_team_stats(id_1, season)
     team_2 = get_past_team_stats(id_2, season)
-    # print('zip: ', zip(team_1, team_2))
     diff = [a - b for a, b in zip(team_1, team_2)]
-    # print('diff:', diff)
     return diff
 
 
@@ -47,18 +53,10 @@ class NeuralNetwork():
         # Seed the random number generator
         np.random.seed(1)
 
-        # Set synaptic weights to a 9x2 matrix (since 9 is the number of variables taken into account)
+        # Set synaptic weights to a 9x1 matrix (since 9 is the number of variables taken into account)
         # Synaptic weights are set to values from -1 to 1 and mean 0
-        self.result = 2 * np.random.random((9, 2)) - 1
-        # print(tuple(np.random.random((9, 2)) - 1))
-        # self.result.astype(int)
-        # print(type (self.result))
-        # print(self.result)
-        # self.result_two = [decimal.Decimal(x) for x in self.result]
-        # print("result")
-        # print(self.result_two)
+        self.result = 2 * np.random.random((9, 1)) - 1
         self.synaptic_weights = [[decimal.Decimal(y) for y in x] for x in self.result]
-        # self.synaptic_weights = [decimal.Decimal(x,y) for (x,y) in self.result_two]
 
     def sigmoid(self, x):
         # Takes in weighted sum of the inputs and normalizes them between 0 and 1 through sigmoid function
@@ -78,6 +76,7 @@ class NeuralNetwork():
 
             # Calculate error rate
             error = training_outputs - output
+            # print("Error rate: ")
             # print(error)
 
             # Multiply error by input and gradient of sigmoid function
@@ -87,8 +86,8 @@ class NeuralNetwork():
             # print([decimal.Decimal(x,y) for (x,y) in self.sigmoid_derivative(output)])
             # print('error:', error)
             # print('sigmoid', self.sigmoid_derivative(output))
-            blah = error * self.sigmoid_derivative(output)
-            adjustments = np.dot(training_inputs.T, blah)
+            p = error * self.sigmoid_derivative(output)
+            adjustments = np.dot(training_inputs.T, p)
 
             #Adjust synaptic weights
             self.synaptic_weights += adjustments
@@ -103,15 +102,19 @@ class NeuralNetwork():
         # print(output)
         return output
 
+    def results(self, predicted, mae, loss):
+        print("returned!")
+        return {'predicted': predicted, 'mae': mae, 'loss': loss}
+
 
 if __name__ == "__main__":
-    compare_two_teams(8, 3, 20162017)
+    # compare_two_teams(8, 3, 20162017)
 
     # Initialize the single neuron neural network
     neural_network = NeuralNetwork()
 
-    print("Random starting synaptic weights: ")
-    print(neural_network.synaptic_weights)
+    # print("Random starting synaptic weights: ")
+    # print(neural_network.synaptic_weights)
 
     # The training set, with 4 examples of 9 input values and 1 output value
     training_inputs = np.array([
@@ -363,14 +366,36 @@ if __name__ == "__main__":
         ])
 
     # Train the neural network
-    neural_network.train(training_inputs, training_outputs, 100)
+    neural_network.train(training_inputs, training_outputs, 1000)
 
     print("Synaptic weights after training: ")
     print(neural_network.synaptic_weights)
 
     # A = [-0.146,-0.146,0.0903,-2.2,0.1,-0.4,0.006,-0.095,-0.083]
-    A = [compare_two_teams(6, 10, 20172018)]
+    A = [
+        compare_two_teams(14, 1, 20172018),
+        compare_two_teams(6, 10, 20172018),
+        compare_two_teams(15, 29, 20172018),
+        compare_two_teams(5, 4, 20172018),
+        compare_two_teams(18, 21, 20172018),
+        compare_two_teams(52, 30, 20172018),
+        compare_two_teams(54, 26, 20172018),
+        compare_two_teams(24, 28, 20172018)
+    ]
     print("Expected output: ")
-    print([1,0])
+    resultsArray = [[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[0,1]]
+    expected = [[[decimal.Decimal(y) for y in x] for x in resultsArray]]
+    print(expected)
     print("Output data: ")
+    predicted = neural_network.think(np.array([A]))
     print(neural_network.think(np.array([A])))
+    # Test RMSE
+    # actual = expected
+    mae = mae_metric(expected, predicted)
+    print("MAE: \n", mae)
+    loss = str(np.mean(np.square(expected - predicted)))
+    print ("Loss: \n", loss)
+    neural_network.results(predicted, mae, loss) 
+    
+   
+
