@@ -1,7 +1,9 @@
 class ChartsController < ApplicationController
 
-    def show
-        @teams = Team.all
-    end
+    
+
+    # def show
+    #     @teams = Team.all
+    # end
     
 end

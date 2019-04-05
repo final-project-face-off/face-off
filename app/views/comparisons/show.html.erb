@@ -9,13 +9,17 @@
     <!--team tab-->
     <div class="plan standard">
         
+    <% if params[:team_1] %> 
         <div class="entry-title">
-        <%= select_tag 'team_1', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team", :onchange => 'update_logo(this.value)' %>
-          
-        <div class="logo"> <%= image_tag("/assets/logo-#{@team1.id}.png", :height => "70") %> 
-            </div>
+        <%= select_tag 'team_1', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team", :onchange => "changeLogo1(this.value)" %>
+        
+        
+        <div class="logo"> 
+            <%= image_tag("/assets/logo-#{@team1.id}.png", {height: "70", id: "team1"}) %> 
+        </div>
 
         </div>
+
         <div class="entry-content">
         
         <ul>
@@ -27,13 +31,44 @@
             <li><strong>Power Play % : </strong><%= @team1.powerPlayPercentage %></li>
             <li><strong>Penalty Kill % : </strong><%= @team1.penaltyKillPercentage %></li> 
             <li><strong>Face Off Win % : </strong><%= @team1.faceOffWinPercentage %></li>
-            <li><strong>Shot % : </strong><%= @team1.shootingPctg %></li>           
+            <li><strong>Shot % : </strong><%= @team1.shootingPctg %></li>
         </ul>
 
         </div>
+
+        <% else %> 
+
+        <div class="entry-title">
+        <%= select_tag 'team_1', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team", :onchange => "changeLogo1(this.value)" %>
+        
+        
+        <div class="logo"> 
+            <%= image_tag("/assets/logo-nhl.png", {height: "70", id: "team1"}) %> 
+        </div>
+
+        </div>
+
+     <div class="entry-content">
+        
+        <ul>
+            <li>  </li>
+            <li><strong>Wins : </strong></li>
+            <li><strong>Losses : </strong></li>
+            <li><strong>Goals/Game : </strong></li>
+            <li><strong>Goals Against/Game : </strong></li>
+            <li><strong>Power Play % : </strong></li>
+            <li><strong>Penalty Kill % : </strong></li> 
+            <li><strong>Face Off Win % : </strong></li>
+            <li><strong>Shot % : </strong></li>
+        </ul>
+
+        </div>
+    <% end %>
             
     </div>
 </div>
+
+
     <!-- end of team tab-->
 
     <div>
@@ -44,26 +79,61 @@
     <!--team tab-->
     <div class="plan basic">
         
-        <div class="entry-title">
-        <%= select_tag 'team_2', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team"  %>
-            <div class="logo"> <%= image_tag("/assets/logo-#{@team2.id}.png", :height => "70") %>
-            </div>
-        </div>
-        <div class="entry-content">
-        
-        <ul>
-            <li><%= link_to "#{@team2.name}", team_path(@team2.id) %></li>
-            <li><strong>Wins : </strong> <%= @team2.wins %></li>
-            <li><strong>Losses : </strong><%= @team2.losses %></li>
-            <li><strong>Goals/Game : </strong><%= @team2.goalsPerGame %></li>            
-            <li><strong>Goals Against/Game : </strong><%= @team2.goalsAgainstPerGame %></li>
-            <li><strong>Power Play % : </strong><%= @team2.powerPlayPercentage %></li>
-            <li><strong>Penalty Kill % : </strong><%= @team2.penaltyKillPercentage %></li> 
-            <li><strong>Face Off Win % : </strong><%= @team2.faceOffWinPercentage %></li>
-            <li><strong>Shot % : </strong><%= @team2.shootingPctg %></li>
-        </ul>
-            
-        </div>
+    <% if params[:team_2] %> 
+    <div class="entry-title">
+    <%= select_tag 'team_2', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team", :onchange => "changeLogo2(this.value)" %>
+    
+    
+    <div class="logo"> 
+        <%= image_tag("/assets/logo-#{@team2.id}.png", {height: "70", id: "team2"}) %> 
+    </div>
+
+    </div>
+
+    <div class="entry-content">
+    
+    <ul>
+        <li><%= link_to "#{@team2.name}", team_path(@team2.id) %></li>
+        <li><strong>Wins : </strong> <%= @team2.wins %></li>
+        <li><strong>Losses : </strong><%= @team2.losses %></li>
+        <li><strong>Goals/Game : </strong><%= @team2.goalsPerGame %></li>
+        <li><strong>Goals Against/Game : </strong><%= @team2.goalsAgainstPerGame %></li>
+        <li><strong>Power Play % : </strong><%= @team2.powerPlayPercentage %></li>
+        <li><strong>Penalty Kill % : </strong><%= @team2.penaltyKillPercentage %></li> 
+        <li><strong>Face Off Win % : </strong><%= @team2.faceOffWinPercentage %></li>
+        <li><strong>Shot % : </strong><%= @team2.shootingPctg %></li>
+    </ul>
+
+    </div>
+
+    <% else %> 
+
+    <div class="entry-title">
+    <%= select_tag 'team_2', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select Team", :onchange => "changeLogo2(this.value)" %>
+    
+    
+    <div class="logo"> 
+        <%= image_tag("/assets/logo-nhl.png", {height: "70", id: "team2"}) %> 
+    </div>
+
+    </div>
+
+ <div class="entry-content">
+    
+    <ul>
+        <li>  </li>
+        <li><strong>Wins : </strong></li>
+        <li><strong>Losses : </strong></li>
+        <li><strong>Goals/Game : </strong></li>
+        <li><strong>Goals Against/Game : </strong></li>
+        <li><strong>Power Play % : </strong></li>
+        <li><strong>Penalty Kill % : </strong></li> 
+        <li><strong>Face Off Win % : </strong></li>
+        <li><strong>Shot % : </strong></li>
+    </ul>
+
+    </div>
+<% end %>
         
     </div>
 </div>
@@ -73,7 +143,21 @@
 
     <end>
 
+    </div>
+    <div class="d-flex">
+        <div class="compare_chart">
+            <%= column_chart [{name: "Wins", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('wins')}, {name: "Losses", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('losses')}], title: "Season Wins", colors: ["#aee08d", "#d1664b"] %>
+        </div>
+        <div class="compare_chart">
+            <%= bar_chart [{name: "Goals For", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsPerGame')}, {name: "/ Against", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsAgainstPerGame')}], colors: ["#aee08d", "#d1664b"] %>
+        </div>
+        <div class="compare_chart">
+            <%= column_chart [{name: "Goals For", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsPerGame')}, {name: "/ Against", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsAgainstPerGame')}], title: "Goals per Game", colors: ["#aee08d", "#d1664b"] %>
+        </div>
+        <div class="compare_chart">
+            <%= line_chart PastTeam.where(team_id: [@team1.id,@team2.id]).group('name').group('season').sum('wins'), title: "Past Season Win Trend", colors: ["#aee08d", "#7aa7ef"]%>      
+        </div>  
+    </div>
+</div>  
     
-
-  </div>
-  
+</div>    
