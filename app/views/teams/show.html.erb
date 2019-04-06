@@ -13,70 +13,123 @@
       </div>
 
       <div class="col-sm-4">
-        <dl class="dl-horizontal">
-          <dt>Name</dt>
-          <dd><%= @team.name %></dd>
-          <dt>Games Played</dt>
-          <dd><%= @team.gamesPlayed %></dd>
-          <dt>Wins</dt>
-          <dd><%= @team.wins %></dd>
-          <dt>Losses</dt>
-          <dd><%= @team.losses %></dd>
-          <dt>Overtime</dt>
-          <dd><%= @team.ot %></dd>
-          <dt>Points</dt>
-          <dd><%= @team.pts %></dd>
-          <dt>Point Percent Game</dt>
-          <dd><%= @team.ptPctg %></dd>
-          <dt>Goals Per Game</dt>
-          <dd><%= @team.goalsPerGame %></dd>
-          <dt>Goals Against Per Game</dt>
-          <dd><%= @team.goalsAgainstPerGame %></dd>
-          <dt>EvGGA Ratio</dt>
-          <dd><%= @team.evGGARatio %></dd>
-          <dt>Power Play Percentage</dt>
-          <dd><%= @team.powerPlayPercentage %></dd>
-          <dt>Power Play Goals</dt>
-          <dd><%= @team.powerPlayGoals %></dd>
-          <dt>Power Play Goals Against</dt>
-          <dd><%= @team.powerPlayGoalsAgainst %></dd>
-          <dt>Power Play Opportunities</dt>
-          <dd><%= @team.powerPlayOpportunities %></dd>
-        </dl>
+        <div class="entry-content">
+          <ul>
+            <li><strong>Games Played : </strong><%= @team.gamesPlayed %></li>
+            <li><strong>Wins : </strong><%= @team.wins %></li>
+            <li><strong>Losses : </strong><%= @team.losses %></li>
+            <li><strong>Overtime : </strong><%= @team.ot %></li>
+            <li><strong>Points : </strong><%= @team.pts %></li>
+            <li><strong>Point Percent Game : </strong><%= @team.ptPctg %></li>
+            <li><strong>Goals Per Game : </strong><%= @team.goalsPerGame %></li>
+            <li><strong>Goals Against Per Game : </strong><%= @team.goalsAgainstPerGame %></li>
+           
+            <li><strong>Past Season Points</strong></li> 
+            <canvas id="myPointsChart"></canvas>
+            <script>
+                
+            var ctx = document.getElementById('myPointsChart');
+            var myPointsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: <%= raw @pastTeam.map(&:season).to_json %>,
+                    datasets: [{
+                        label: 'Points',
+                        data: <%= raw @pastTeam.map(&:pts).to_json %>,
+            
+                        backgroundColor: [
+                            'rgba(113, 115, 156, 0.2)',
+                            'rgba(113, 115, 156, 0.2)',  
+                            'rgba(113, 115, 156, 0.2)',  
+                            'rgba(113, 115, 156, 0.2)', 
+                            'rgba(113, 115, 156, 0.2)',
+                            'rgba(113, 115, 156, 0.2)',  
+                            'rgba(113, 115, 156, 0.2)',  
+                            'rgba(113, 115, 156, 0.2)',
+                            'rgba(113, 115, 156, 0.2)'                        
+                        ],
+                        borderColor: [
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)',
+                            'rgba(58, 59, 89, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            </script>
+            <li><strong>Power Play Percentage : </strong><%= @team.powerPlayPercentage %></li>
+            <li><strong>Power Play Goals : </strong><%= @team.powerPlayGoals %></li>
+            <li><strong>Power Play Goals Against : </strong><%= @team.powerPlayGoalsAgainst %></li>
+            <li><strong>Power Play Opportunities : </strong><%= @team.powerPlayOpportunities %></li>
+          </ul>
+        </div>  
       </div>
+      
       <div class="col-sm-4">
-        <dl class="dl-horizontal">
-          <dt>Penalty Kill Percentage</dt>
-          <dd><%= @team.penaltyKillPercentage %></dd>
-          <dt>Shots Per Game</dt>
-          <dd><%= @team.shotsPerGame %></dd>
-          <dt>Shots Allowed</dt>
-          <dd><%= @team.shotsAllowed %></dd>
-          <dt>Win Score First</dt>
-          <dd><%= @team.winScoreFirst %></dd>
-          <dt>Win Opponent Score First</dt>
-          <dd><%= @team.winOppScoreFirst %></dd>
-          <dt>Win Lead First Period</dt>
-          <dd><%= @team.winLeadFirstPer %></dd>
-          <dt>Win Lead Second Period</dt>
-          <dd><%= @team.winLeadSecondPer %></dd>
-          <dt>Win Outshoot Opponent</dt>
-          <dd><%= @team.winOutshootOpp %></dd>
-          <dt>Win Outshot By Opponent</dt>
-          <dd><%= @team.winOutshotByOpp %></dd>
-          <dt>Face Offs Taken</dt>
-          <dd><%= @team.faceOffsTaken %></dd>
-          <dt>Face Offs Won</dt>
-          <dd><%= @team.faceOffsWon %></dd>
-          <dt>Face Offs Lost</dt>
-          <dd><%= @team.faceOffsLost %></dd>
-          <dt>Face Off Win Percentage</dt>
-          <dd><%= @team.faceOffWinPercentage %></dd>
-          <dt>Shooting Percentage Game</dt>
-          <dd><%= @team.shootingPctg %></dd>
-          <dt>Save Percentage Game</dt>
-          <dd><%= @team.savePctg %></dd>
-        </dl>
+        <div class="entry-content">
+          <ul>
+            <li><strong>Past Season Win Trend</strong></li> 
+            <canvas id="myWinsChart"></canvas>
+            <script>
+                
+            var ctx = document.getElementById('myWinsChart');
+            var myWinsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: <%= raw @pastTeam.map(&:season).to_json %>,
+                    datasets: [{
+                        label: 'Wins',
+                        data: <%= raw @pastTeam.map(&:wins).to_json %>,
+            
+                        backgroundColor: [
+                            'rgba(113, 115, 156, 0.2)',                         
+                        ],
+                        borderColor: [
+                            'rgba(58, 59, 89, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            </script>            
+            
+            <li><strong>Penalty Kill Percentage : </strong><%= @team.penaltyKillPercentage %></li>
+            <li><strong>Shots Per Game : </strong><%= @team.shotsPerGame %></li>
+            <li><strong>Shots Allowed : </strong><%= @team.shotsAllowed %></li>
+            <li><strong>Win Outshot By Opponent : </strong><%= @team.winOutshotByOpp %></li>
+            <li><strong>Face Offs Taken : </strong><%= @team.faceOffsTaken %></li>
+            <li><strong>Face Offs Won : </strong><%= @team.faceOffsWon %></li>
+            <li><strong>Face Offs Lost : </strong><%= @team.faceOffsLost %></li>
+            <li><strong>Face Off Win Percentage : </strong><%= @team.faceOffWinPercentage %></li>
+            <li><strong>Shooting Percentage Game : </strong><%= @team.shootingPctg %></li>
+            <li><strong>Save Percentage Game : </strong><%= @team.savePctg %></li>
+            <li><strong>EvGGA Ratio : </strong><%= @team.evGGARatio %></li>
+        </ul>
       </div>
     </div>
 

@@ -1,6 +1,55 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
-<%= line_chart PastTeam.where(team_id: [1,2]).where(season: [20152016,20162017,20172018]).group('name').group('season').sum('wins'), title: "Past Season Win Trend", discrete: true %>
+<canvas id="myChart"></canvas>
+<script>
+    
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <%= raw @team.map(&:season).to_json %>,
+        datasets: [{
+            label: 'Wins',
+            data: <%= @team.map(&:wins).to_json %>,
+
+            backgroundColor: [
+                
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        },
+        {
+            label: 'Losses',
+            data: <%= @team.map(&:losses).to_json %>,
+
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<%= line_chart PastTeam.where(team_id: [1,2]).group('name').group('season').sum('wins'), title: "Past Season Win Trend", discrete: true %>
 
 <%= line_chart PastTeam.where(team_id: [1,2]).group('name').group('season').sum('goalsPerGame'), title: "Past Season Goals Trend", discrete: true %>
 
