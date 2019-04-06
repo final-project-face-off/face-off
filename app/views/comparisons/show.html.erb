@@ -26,6 +26,7 @@
             <li><%= link_to "#{@team1.name}", team_path(@team1.id) %></li>
             <li><strong>Wins : </strong> <%= @team1.wins %></li>
             <li><strong>Losses : </strong><%= @team1.losses %></li>
+            <li><strong>Points : </strong><%= @team1.pts %></li>
             <li><strong>Goals/Game : </strong><%= @team1.goalsPerGame %></li>
             <li><strong>Goals Against/Game : </strong><%= @team1.goalsAgainstPerGame %></li>
             <li><strong>Power Play % : </strong><%= @team1.powerPlayPercentage %></li>
@@ -54,6 +55,7 @@
             <li>  </li>
             <li><strong>Wins : </strong></li>
             <li><strong>Losses : </strong></li>
+            <li><strong>Points : </strong></li>
             <li><strong>Goals/Game : </strong></li>
             <li><strong>Goals Against/Game : </strong></li>
             <li><strong>Power Play % : </strong></li>
@@ -96,6 +98,7 @@
         <li><%= link_to "#{@team2.name}", team_path(@team2.id) %></li>
         <li><strong>Wins : </strong> <%= @team2.wins %></li>
         <li><strong>Losses : </strong><%= @team2.losses %></li>
+        <li><strong>Points : </strong><%= @team2.pts %></li>
         <li><strong>Goals/Game : </strong><%= @team2.goalsPerGame %></li>
         <li><strong>Goals Against/Game : </strong><%= @team2.goalsAgainstPerGame %></li>
         <li><strong>Power Play % : </strong><%= @team2.powerPlayPercentage %></li>
@@ -124,6 +127,7 @@
         <li>  </li>
         <li><strong>Wins : </strong></li>
         <li><strong>Losses : </strong></li>
+        <li><strong>Points : </strong></li>
         <li><strong>Goals/Game : </strong></li>
         <li><strong>Goals Against/Game : </strong></li>
         <li><strong>Power Play % : </strong></li>
@@ -144,20 +148,52 @@
     <end>
 
     </div>
+<% if params[:team_1] %>    
     <div class="d-flex">
         <div class="compare_chart">
-            <%= column_chart [{name: "Wins", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('wins')}, {name: "Losses", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('losses')}], title: "Season Wins", colors: ["#aee08d", "#d1664b"] %>
+            <%= column_chart [{name: "Wins", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('wins')}, {name: "Losses", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('losses')}], title: "Season Wins", colors: ["rgba(113, 115, 156, 0.35)", "#d1664b"] %>
         </div>
         <div class="compare_chart">
-            <%= bar_chart [{name: "Goals For", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsPerGame')}, {name: "/ Against", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsAgainstPerGame')}], colors: ["#aee08d", "#d1664b"] %>
+            <%= line_chart PastTeam.where(team_id: [@team1.id,@team2.id]).order('season').group('name').group('season').sum('wins'), title: "Past Season Win Trend", colors: ["#aee08d", "#7aa7ef"], discrete: true%>      
         </div>
         <div class="compare_chart">
-            <%= column_chart [{name: "Goals For", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsPerGame')}, {name: "/ Against", data: Team.where(id: [@team1.id,@team2.id]).group('name').sum('goalsAgainstPerGame')}], title: "Goals per Game", colors: ["#aee08d", "#d1664b"] %>
-        </div>
+        <canvas id="myWinsChart"></canvas>
+        <script>
+            
+        var ctx = document.getElementById('myWinsChart');
+        var myWinsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: <%= raw @pastTeam.map(&:season).to_json %>,
+                datasets: [{
+                    label: 'Wins',
+                    data: <%= raw @pastTeam.map(&:wins).to_json %>,
+        
+                    backgroundColor: [
+                        'rgba(113, 115, 156, 0.2)',                         
+                    ],
+                    borderColor: [
+                        'rgba(58, 59, 89, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        </script>         </div>
         <div class="compare_chart">
-            <%= line_chart PastTeam.where(team_id: [@team1.id,@team2.id]).group('name').group('season').sum('wins'), title: "Past Season Win Trend", colors: ["#aee08d", "#7aa7ef"], discrete: true%>      
+            <%= pie_chart Team.where(team_id: [@team1.id,@team2.id]).group('name').sum('pts'), title: "Points", colors: ["#aee08d", "#7aa7ef"] %>
         </div>  
     </div>
-</div>  
-    
+<% end %>    
+   
+</div>     
 </div>    
