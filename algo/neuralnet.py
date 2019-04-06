@@ -5,13 +5,14 @@ from dotenv import load_dotenv
 import os
 import decimal
 import sys
+import json
 load_dotenv()
 
 EPOCHS = 1000
 LEARNING_RATE = [decimal.Decimal('0.1')]
-TEAM_ID_1 = sys.argv[1]
-TEAM_ID_2 = sys.argv[2]
-SEASON = sys.argv[3]
+TEAM_ID_1 = int(sys.argv[1])
+TEAM_ID_2 = int(sys.argv[2])
+SEASON = int(sys.argv[3])
 
 # Calculate mean absolute error
 def mae_metric(actual, predicted):
@@ -97,7 +98,14 @@ class NeuralNetwork():
         return output
 
     def results(self, predicted, mae, loss):
-        return {'predicted': predicted, 'mae': mae, 'loss': loss}
+        predictedFloat = float(predicted)
+        maeFloat = float(mae)
+        loss = float(loss)
+        # Convert the results to JSON format
+        predictedJSON = json.dumps({ "predicted": predictedFloat, "mae": maeFloat, "loss": loss })
+        # The Faceoff Results Controlled receives the PRINTED results
+        print(predictedJSON)
+        # return {'predicted': predictedFloat, 'mae': maeFloat, 'loss': loss}
 
 
 if __name__ == "__main__":
@@ -362,20 +370,32 @@ if __name__ == "__main__":
     # print(neural_network.synaptic_weights)
 
     A = [compare_two_teams(TEAM_ID_1, TEAM_ID_2, SEASON)]
-    print(TEAM_ID_1, TEAM_ID_2, SEASON)
-
-    A = [compare_two_teams(14, 1, 20172018)]
-    # print("Expected output: ")
     resultsArray = np.array([[1]]).T
 
     predicted = neural_network.think(np.array(A))
-    print("Output data: ", predicted)
+    # print("Output data: ", predicted)
 
     mae = mae_metric(resultsArray, predicted)
-    print("MAE: \n", mae)
+    # print("MAE: \n", mae)
     loss = str(np.mean(np.square(resultsArray - predicted)))
-    print ("Loss: \n", loss)
+    # print("Loss: \n", loss)
     neural_network.results(predicted, mae, loss)
+
+
+    # HARDCODED INPUT TEST TO COMPARE THAT DATA PASSED FROM CONTROLLER
+    # RETURNS THE EXPECT DATA (IE OUTPUT FROM A AND B SHOULD MATCH)
+    # B = [compare_two_teams(1, 2, 20182019)]
+    # # print("Expected output: ")
+    # resultsArray = np.array([[1]]).T
+
+    # predicted = neural_network.think(np.array(B))
+    # print("Output data: ", predicted)
+
+    # mae = mae_metric(resultsArray, predicted)
+    # print("MAE: \n", mae)
+    # loss = str(np.mean(np.square(resultsArray - predicted)))
+    # print ("Loss: \n", loss)
+    # neural_network.results(predicted, mae, loss)
 
 
 
