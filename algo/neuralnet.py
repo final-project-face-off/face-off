@@ -8,11 +8,11 @@ import sys
 import json
 load_dotenv()
 
-EPOCHS = 1000
-LEARNING_RATE = [decimal.Decimal('0.1')]
-TEAM_ID_1 = int(sys.argv[1])
-TEAM_ID_2 = int(sys.argv[2])
-SEASON = int(sys.argv[3])
+EPOCHS = 1500
+LEARNING_RATE = [decimal.Decimal('0.05')]
+# TEAM_ID_1 = int(sys.argv[1])
+# TEAM_ID_2 = int(sys.argv[2])
+# SEASON = int(sys.argv[3])
 
 # Calculate mean absolute error
 def mae_metric(actual, predicted):
@@ -118,6 +118,7 @@ if __name__ == "__main__":
 
     # The training set, with 4 examples of 9 input values and 1 output value
     training_inputs = np.array([
+        # NHL Playoff games for season 2009-2010
         compare_two_teams(15, 8, 20092010),
         compare_two_teams(1, 4, 20092010),
         compare_two_teams(7, 6, 20092010),
@@ -133,6 +134,7 @@ if __name__ == "__main__":
         compare_two_teams(8, 4, 20092010),
         compare_two_teams(28, 16, 20092010),
         compare_two_teams(4, 16, 20092010),
+        # NHL Playoff games for season 2010-2011
         compare_two_teams(15, 3, 20102011),
         compare_two_teams(4, 7, 20102011),
         compare_two_teams(6, 8, 20102011),
@@ -148,6 +150,7 @@ if __name__ == "__main__":
         compare_two_teams(14, 6, 20102011),
         compare_two_teams(23, 28, 20102011),
         compare_two_teams(6, 23, 20102011),
+        # NHL Playoff games for season 2011-2012
         compare_two_teams(3, 9, 20112012),
         compare_two_teams(6, 15, 20112012),
         compare_two_teams(13, 1, 20112012),
@@ -163,6 +166,7 @@ if __name__ == "__main__":
         compare_two_teams(3, 1, 20112012),
         compare_two_teams(26, 27, 20112012),
         compare_two_teams(1, 26, 20112012),
+        # NHL Playoff games for season 2012-2013
         compare_two_teams(5, 2, 20122013),
         compare_two_teams(8, 9, 20122013),
         compare_two_teams(15, 3, 20122013),
@@ -178,6 +182,7 @@ if __name__ == "__main__":
         compare_two_teams(5, 6, 20122013),
         compare_two_teams(16, 26, 20122013),
         compare_two_teams(6, 16, 20122013),
+        # NHL Playoff games for season 2013-2014
         compare_two_teams(6, 17, 20132014),
         compare_two_teams(14, 8, 20132014),
         compare_two_teams(5, 29, 20132014),
@@ -193,6 +198,7 @@ if __name__ == "__main__":
         compare_two_teams(8, 3, 20132014),
         compare_two_teams(16, 26, 20132014),
         compare_two_teams(3, 26, 20132014),
+        # NHL Playoff games for season 2014-2015
         compare_two_teams(8, 9, 20142015),
         compare_two_teams(14, 17, 20142015),
         compare_two_teams(3, 5, 20142015),
@@ -208,6 +214,7 @@ if __name__ == "__main__":
         compare_two_teams(14, 3, 20142015),
         compare_two_teams(16, 24, 20142015),
         compare_two_teams(14, 16, 20142015),
+        # NHL Playoff games for season 2015-2016
         compare_two_teams(13, 2, 20152016),
         compare_two_teams(14, 17, 20152016),
         compare_two_teams(15, 4, 20152016),
@@ -223,6 +230,7 @@ if __name__ == "__main__":
         compare_two_teams(14, 5, 20152016),
         compare_two_teams(19, 28, 20152016),
         compare_two_teams(5, 28, 20152016),
+        # NHL Playoff games for season 2016-2017
         compare_two_teams(8, 3, 20162017),
         compare_two_teams(9, 6, 20162017),
         compare_two_teams(15, 10, 20162017),
@@ -238,6 +246,216 @@ if __name__ == "__main__":
         compare_two_teams(9, 5, 20162017),
         compare_two_teams(18, 24, 20162017),
         compare_two_teams(5, 18, 20162017),
+        # 2010-03-25 (11 games)
+        compare_two_teams(14, 6, 20092010),
+        compare_two_teams(3, 1, 20092010),
+        compare_two_teams(20, 2, 20092010),
+        compare_two_teams(30, 4, 20092010),
+        compare_two_teams(15, 12, 20092010),
+        compare_two_teams(10, 11, 20092010),
+        compare_two_teams(16, 29, 20092010),
+        compare_two_teams(13, 8, 20092010),
+        compare_two_teams(26, 19, 20092010),
+        compare_two_teams(27, 18, 20092010),
+        compare_two_teams(25, 28, 20092010),
+        # 2011-03-26 (12 games)
+        compare_two_teams(3, 6, 20102011),
+        compare_two_teams(21, 26, 20102011),
+        compare_two_teams(1, 7, 20102011),
+        compare_two_teams(15, 8, 20102011),
+        compare_two_teams(4, 2, 20102011),
+        compare_two_teams(14, 12, 20102011),
+        compare_two_teams(10, 17, 20102011),
+        compare_two_teams(25, 18, 20102011),
+        compare_two_teams(19, 30, 20102011),
+        compare_two_teams(24, 16, 20102011),
+        compare_two_teams(28, 27, 20102011),
+        compare_two_teams(20, 22, 20102011),
+        # 2012-03-24 (11 games)
+        compare_two_teams(20, 25, 20112012),
+        compare_two_teams(52, 18, 20112012),
+        compare_two_teams(30, 7, 20112012),
+        compare_two_teams(3, 10, 20112012),
+        compare_two_teams(5, 9, 20112012),
+        compare_two_teams(8, 4, 20112012),
+        compare_two_teams(2, 14, 20112012),
+        compare_two_teams(12, 17, 20112012),
+        compare_two_teams(6, 26, 20112012),
+        compare_two_teams(27, 28, 20112012),
+        compare_two_teams(23, 21, 20112012),
+        # 2013-03-28 (10 games)
+        compare_two_teams(12, 10, 20122013),
+        compare_two_teams(2, 4, 20122013),
+        compare_two_teams(52, 5, 20122013),
+        compare_two_teams(3, 9, 20122013),
+        compare_two_teams(7, 13, 20122013),
+        compare_two_teams(26, 19, 20122013),
+        compare_two_teams(27, 18, 20122013),
+        compare_two_teams(29, 22, 20122013),
+        compare_two_teams(21, 23, 20122013),
+        compare_two_teams(17, 28, 20122013),
+        # 2014-03-25 (10 games)
+        compare_two_teams(19, 10, 20132014),
+        compare_two_teams(27, 5, 20132014),
+        compare_two_teams(26, 15, 20132014),
+        compare_two_teams(2, 12, 20132014),
+        compare_two_teams(7, 8, 20132014),
+        compare_two_teams(9, 13, 20132014),
+        compare_two_teams(17, 29, 20132014),
+        compare_two_teams(25, 16, 20132014),
+        compare_two_teams(21, 18, 20132014),
+        compare_two_teams(28, 22, 20132014),
+        # 2015-03-26 (11 games)
+        compare_two_teams(24, 6, 20142015),
+        compare_two_teams(53, 7, 20142015),
+        compare_two_teams(26, 2, 20142015),
+        compare_two_teams(1, 15, 20142015),
+        compare_two_teams(5, 12, 20142015),
+        compare_two_teams(13, 10, 20142015),
+        compare_two_teams(3, 9, 20142015),
+        compare_two_teams(28, 17, 20142015),
+        compare_two_teams(18, 14, 20142015),
+        compare_two_teams(8, 52, 20142015),
+        compare_two_teams(21, 23, 20142015),
+        # 2016-03-26 (14 games)
+        compare_two_teams(52, 7, 20152016),
+        compare_two_teams(5, 17, 20152016),
+        compare_two_teams(30, 21, 20152016),
+        compare_two_teams(25, 28, 20152016),
+        compare_two_teams(6, 10, 20152016),
+        compare_two_teams(3, 8, 20152016),
+        compare_two_teams(24, 9, 20152016),
+        compare_two_teams(13, 14, 20152016),
+        compare_two_teams(19, 15, 20152016),
+        compare_two_teams(2, 12, 20152016),
+        compare_two_teams(29, 18, 20152016),
+        compare_two_teams(4, 53, 20152016),
+        compare_two_teams(22, 26, 20152016),
+        compare_two_teams(16, 20, 20152016),
+        # 2017-03-25 (12 games)
+        compare_two_teams(23, 30, 20162017),
+        compare_two_teams(4, 29, 20162017),
+        compare_two_teams(20, 19, 20162017),
+        compare_two_teams(10, 7, 20162017),
+        compare_two_teams(9, 8, 20162017),
+        compare_two_teams(16, 13, 20162017),
+        compare_two_teams(12, 1, 20162017),
+        compare_two_teams(6, 2, 20162017),
+        compare_two_teams(53, 15, 20162017),
+        compare_two_teams(28, 18, 20162017),
+        compare_two_teams(21, 22, 20162017),
+        compare_two_teams(3, 26, 20162017),
+        # 2010-03-16 (11 games)
+        compare_two_teams(6, 12, 20092010),
+        compare_two_teams(7, 11, 20092010),
+        compare_two_teams(8, 3, 20092010),
+        compare_two_teams(10, 9, 20092010),
+        compare_two_teams(27, 14, 20092010),
+        compare_two_teams(15, 13, 20092010),
+        compare_two_teams(21, 19, 20092010),
+        compare_two_teams(4, 18, 20092010),
+        compare_two_teams(22, 30, 20092010),
+        compare_two_teams(28, 25, 20092010),
+        compare_two_teams(2, 23, 20092010),
+        # 2011-03-15 (10 games)
+        compare_two_teams(11, 1, 20102011),
+        compare_two_teams(2, 3, 20102011),
+        compare_two_teams(6, 29, 20102011),
+        compare_two_teams(15, 8, 20102011),
+        compare_two_teams(12, 7, 20102011),
+        compare_two_teams(5, 9, 20102011),
+        compare_two_teams(4, 13, 20102011),
+        compare_two_teams(26, 18, 20102011),
+        compare_two_teams(28, 25, 20102011),
+        compare_two_teams(27, 20, 20102011),
+        # 2012-03-17 (11 games)
+        compare_two_teams(4, 6, 20112012),
+        compare_two_teams(5, 1, 20112012),
+        compare_two_teams(12, 30, 20112012),
+        compare_two_teams(2, 8, 20112012),
+        compare_two_teams(10, 9, 20112012),
+        compare_two_teams(21, 3, 20112012),
+        compare_two_teams(19, 14, 20112012),
+        compare_two_teams(7, 13, 20112012),
+        compare_two_teams(29, 23, 20112012),
+        compare_two_teams(18, 26, 20112012),
+        compare_two_teams(17, 28, 20112012),
+        # 2013-03-16 (13 games)
+        compare_two_teams(15, 6, 20122013),
+        compare_two_teams(3, 5, 20122013),
+        compare_two_teams(30, 21, 20122013),
+        compare_two_teams(9, 7, 20122013),
+        compare_two_teams(52, 10, 20122013),
+        compare_two_teams(8, 1, 20122013),
+        compare_two_teams(12, 14, 20122013),
+        compare_two_teams(27, 29, 20122013),
+        compare_two_teams(2, 13, 20122013),
+        compare_two_teams(24, 19, 20122013),
+        compare_two_teams(16, 25, 20122013),
+        compare_two_teams(17, 23, 20122013),
+        compare_two_teams(28, 26, 20122013),
+        # 2014-03-18 (12 games)
+        compare_two_teams(6, 1, 20132014),
+        compare_two_teams(30, 2, 20132014),
+        compare_two_teams(25, 5, 20132014),
+        compare_two_teams(12, 29, 20132014),
+        compare_two_teams(21, 8, 20132014),
+        compare_two_teams(3, 9, 20132014),
+        compare_two_teams(10, 17, 20132014),
+        compare_two_teams(16, 4, 20132014),
+        compare_two_teams(7, 20, 20132014),
+        compare_two_teams(18, 22, 20132014),
+        compare_two_teams(15, 24, 20132014),
+        compare_two_teams(13, 28, 20132014),
+        # 2015-03-14 (12 games)
+        compare_two_teams(17, 4, 20142015),
+        compare_two_teams(6, 5, 20142015),
+        compare_two_teams(16, 28, 20142015),
+        compare_two_teams(10, 23, 20142015),
+        compare_two_teams(3, 7, 20142015),
+        compare_two_teams(52, 14, 20142015),
+        compare_two_teams(8, 2, 20142015),
+        compare_two_teams(13, 12, 20142015),
+        compare_two_teams(30, 19, 20142015),
+        compare_two_teams(1, 53, 20142015),
+        compare_two_teams(18, 26, 20142015),
+        compare_two_teams(20, 21, 20142015),
+        # 2016-03-19 (11 games)
+        compare_two_teams(5, 4, 20152016),
+        compare_two_teams(12, 30, 20152016),
+        compare_two_teams(3, 28, 20152016),
+        compare_two_teams(7, 10, 20152016),
+        compare_two_teams(8, 9, 20152016),
+        compare_two_teams(17, 13, 20152016),
+        compare_two_teams(1, 29, 20152016),
+        compare_two_teams(2, 25, 20152016),
+        compare_two_teams(19, 23, 20152016),
+        compare_two_teams(14, 53, 20152016),
+        compare_two_teams(6, 26, 20152016),
+        # 2017-03-16 (12 games)
+        compare_two_teams(4, 1, 20162017),
+        compare_two_teams(52, 2, 20162017),
+        compare_two_teams(18, 15, 20162017),
+        compare_two_teams(30, 12, 20162017),
+        compare_two_teams(13, 29, 20162017),
+        compare_two_teams(16, 9, 20162017),
+        compare_two_teams(10, 14, 20162017),
+        compare_two_teams(6, 22, 20162017),
+        compare_two_teams(25, 23, 20162017),
+        compare_two_teams(17, 53, 20162017),
+        compare_two_teams(7, 26, 20162017),
+        compare_two_teams(19, 28, 20162017),
+        # 2018-03-17 (10 games)
+        compare_two_teams(16, 7, 20172018),
+        compare_two_teams(22, 13, 20172018),
+        compare_two_teams(1, 26, 20172018),
+        compare_two_teams(8, 10, 20172018),
+        compare_two_teams(6, 14, 20172018),
+        compare_two_teams(4, 12, 20172018),
+        compare_two_teams(9, 29, 20172018),
+        compare_two_teams(3, 19, 20172018),
+        compare_two_teams(30, 53, 20172018),
+        compare_two_teams(28, 23, 20172018),
     ])
 
     training_outputs = np.array([[
@@ -360,26 +578,280 @@ if __name__ == "__main__":
         1,
         0,
         1,
-        1
+        1,
+        # 2010-03-25 (11 games)
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        # 2011-03-26 (12 games)
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1, 
+        1,
+        1,
+        # 2012-03-24 (11 games)
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        # 2013-03-28 (10 games)
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        # 2014-03-25 (10 games)
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        # 2015-03-26 (11 games)
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        # 2016-03-26 (14 games)
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        # 2017-03-25 (12 games)
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        # 20092010
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        # 20102011
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        # 20112012
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        # 20122013
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        # 20132014
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        # 20142015
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        # 20152016
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        # 20162017
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        # 20172018
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
     ]]).T
 
     # Train the neural network
     neural_network.train(training_inputs, training_outputs, EPOCHS)
 
-    # print("Synaptic weights after training: ")
-    # print(neural_network.synaptic_weights)
+    print("Synaptic weights after training: ")
+    print(neural_network.synaptic_weights)
 
-    A = [compare_two_teams(TEAM_ID_1, TEAM_ID_2, SEASON)]
-    resultsArray = np.array([[1]]).T
+    # TEST ON SEASON 2017-2018 
+    B = [
+        # 2018-03-24 (12 games)
+        compare_two_teams(54, 21, 20172018),
+        compare_two_teams(20, 28, 20172018),
+        compare_two_teams(17, 10, 20172018),
+        compare_two_teams(15, 8, 20172018),
+        compare_two_teams(12, 9, 20172018),
+        compare_two_teams(53, 13, 20172018),
+        compare_two_teams(14, 1, 20172018),
+        compare_two_teams(16, 2, 20172018),
+        compare_two_teams(7, 3, 20172018),
+        compare_two_teams(19, 29, 20172018),
+        compare_two_teams(18, 30, 20172018),
+        compare_two_teams(26, 22, 20172018),
+        # Playoffs 2018
+        compare_two_teams(14, 1, 20172018),
+        compare_two_teams(6, 10, 20172018),
+        compare_two_teams(15, 29, 20172018),
+        compare_two_teams(5, 4, 20172018),
+        compare_two_teams(18, 21, 20172018),
+        compare_two_teams(52, 30, 20172018),
+        compare_two_teams(54, 26, 20172018),
+        compare_two_teams(24, 28, 20172018),
+        compare_two_teams(14, 6, 20172018),
+        compare_two_teams(15, 5, 20172018),
+        compare_two_teams(18, 52, 20172018),
+        compare_two_teams(54, 28, 20172018),
+        compare_two_teams(14, 15, 20172018),
+        compare_two_teams(52, 54, 20172018),
+        compare_two_teams(15, 54, 20172018),
+        ]
+    # print("Expected output: ")
+    resultsArray = np.array([[0,0,0,1,1,0,0,1,0,1,0,0,1,1,1,1,1,1,1,0,1,1,0,1,0,0,1]]).T
 
-    predicted = neural_network.think(np.array(A))
-    # print("Output data: ", predicted)
+    predicted = neural_network.think(np.array(B))
+    print("B Output data: ", predicted)
 
     mae = mae_metric(resultsArray, predicted)
-    # print("MAE: \n", mae)
+    print("B MAE: \n", mae)
     loss = str(np.mean(np.square(resultsArray - predicted)))
-    # print("Loss: \n", loss)
+    print ("B Loss: \n", loss)
     neural_network.results(predicted, mae, loss)
+
+    # A = [compare_two_teams(TEAM_ID_1, TEAM_ID_2, SEASON)]
+    # resultsArray = np.array([[1]]).T
+
+    # predicted = neural_network.think(np.array(A))
+    # # print("Output data: ", predicted)
+
+    # mae = mae_metric(resultsArray, predicted)
+    # # print("MAE: \n", mae)
+    # loss = str(np.mean(np.square(resultsArray - predicted)))
+    # # print("Loss: \n", loss)
+    # neural_network.results(predicted, mae, loss)
 
 
     # HARDCODED INPUT TEST TO COMPARE THAT DATA PASSED FROM CONTROLLER
