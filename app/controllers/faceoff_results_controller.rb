@@ -25,7 +25,7 @@ class FaceoffResultsController < ApplicationController
     @faceoff_result.team2_id = predicted_outcome[:losing_team]
     @faceoff_result.team1_percent_chance_win = predicted_outcome[:winning_team_prob]
     @faceoff_result.team2_percent_chance_win = predicted_outcome[:losing_team_prob]
-    @faceoff_result.mean_absolute_error = @parsed_sim[:mae]
+    @faceoff_result.mean_absolute_error = @parsed_sim[:loss]
 
     # Handle errors
     if @faceoff_result.save
@@ -57,6 +57,9 @@ class FaceoffResultsController < ApplicationController
   def python (season, team1, team2)
     output, status = Open3.capture2("algo/neuralnet.py", "#{team1}", "#{team2}", "#{season}")
     output
+    # puts "###############"
+    # puts output
+    # puts "###############"
     # expexted output { "predicted": 0.9605167193846802, "mae": 0.0394832806153198, "loss": 0.001558929448148088 }
   end
 
