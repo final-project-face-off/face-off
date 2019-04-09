@@ -13,7 +13,7 @@
             <div class="logo-container">
               <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team1" %>
             </div>
-              <%= select_tag 'team1_id', options_from_collection_for_select(Team.all, :id, :name), { :prompt => "Select a Team", :onchange => "changeLogo1(this.value)" } %>
+              <%= select_tag 'team1_id', options_from_collection_for_select(Team.order(:name), :id, :name), { :prompt => "Select a Team", :onchange => "changeLogo1(this.value)" } %>
           </div>
 
           <div class="team-selection">
@@ -24,7 +24,7 @@
             <div class="logo-container">
               <%= image_tag ("logo-nhl.png"), :class => "team-logo", :id => "team2" %>
             </div>
-              <%= select_tag 'team2_id', options_from_collection_for_select(Team.all, :id, :name), :prompt => "Select a Team", :onchange => "changeLogo2(this.value)" %>
+              <%= select_tag 'team2_id', options_from_collection_for_select(Team.order(:name), :id, :name), :prompt => "Select a Team", :onchange => "changeLogo2(this.value)" %>
           </div>
         </div>
 
