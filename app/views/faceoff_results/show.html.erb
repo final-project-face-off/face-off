@@ -19,8 +19,7 @@
         </div>
 
         <div class="team-results-data">
-          <h4> Chance of Winning </h4>
-          <p> Loss <%= @faceoff_result.mean_absolute_error %></p>
+          <h4> Chance of Winning a Playoff Series</h4>
         </div>
 
         <div class="team-results">
@@ -31,10 +30,6 @@
           <h2><%= (@faceoff_result.team2_percent_chance_win * 100).round %>%</h2>
         </div>
 
-      </div>
-
-      <div class="series-results">
-        <h5><%= @seriesResult %></h5>
       </div>
 
     </div>
