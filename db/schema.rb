@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_164330) do
+ActiveRecord::Schema.define(version: 2019_04_09_141930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,29 +47,29 @@ ActiveRecord::Schema.define(version: 2019_04_04_164330) do
     t.integer "losses"
     t.integer "ot"
     t.integer "pts"
-    t.decimal "ptPctg", precision: 4, scale: 2
-    t.decimal "goalsPerGame", precision: 4, scale: 2
-    t.decimal "goalsAgainstPerGame", precision: 4, scale: 2
-    t.decimal "evGGARatio", precision: 4, scale: 2
-    t.decimal "powerPlayPercentage", precision: 4, scale: 2
+    t.decimal "ptPctg", precision: 15, scale: 10
+    t.decimal "goalsPerGame", precision: 15, scale: 10
+    t.decimal "goalsAgainstPerGame", precision: 15, scale: 10
+    t.decimal "evGGARatio", precision: 15, scale: 10
+    t.decimal "powerPlayPercentage", precision: 15, scale: 10
     t.integer "powerPlayGoals"
     t.integer "powerPlayGoalsAgainst"
     t.integer "powerPlayOpportunities"
-    t.decimal "penaltyKillPercentage", precision: 4
-    t.decimal "shotsPerGame", precision: 4
-    t.decimal "shotsAllowed", precision: 4
-    t.decimal "winScoreFirst", precision: 4
-    t.decimal "winOppScoreFirst", precision: 4
-    t.decimal "winLeadFirstPer", precision: 4
-    t.decimal "winLeadSecondPer", precision: 4
-    t.decimal "winOutshootOpp", precision: 4
-    t.decimal "winOutshotByOpp", precision: 4
-    t.decimal "faceOffsTaken", precision: 4
+    t.decimal "penaltyKillPercentage", precision: 15, scale: 10
+    t.decimal "shotsPerGame", precision: 15, scale: 10
+    t.decimal "shotsAllowed", precision: 15, scale: 10
+    t.decimal "winScoreFirst", precision: 15, scale: 10
+    t.decimal "winOppScoreFirst", precision: 15, scale: 10
+    t.decimal "winLeadFirstPer", precision: 15, scale: 10
+    t.decimal "winLeadSecondPer", precision: 15, scale: 10
+    t.decimal "winOutshootOpp", precision: 15, scale: 10
+    t.decimal "winOutshotByOpp", precision: 15, scale: 10
+    t.decimal "faceOffsTaken", precision: 15, scale: 10
     t.integer "faceOffsWon"
     t.integer "faceOffsLost"
-    t.decimal "faceOffWinPercentage", precision: 4
-    t.decimal "shootingPctg", precision: 4
-    t.decimal "savePctg", precision: 4
+    t.decimal "faceOffWinPercentage", precision: 15, scale: 10
+    t.decimal "shootingPctg", precision: 15, scale: 10
+    t.decimal "savePctg", precision: 15, scale: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,32 +81,33 @@ ActiveRecord::Schema.define(version: 2019_04_04_164330) do
     t.integer "losses"
     t.integer "ot"
     t.integer "pts"
-    t.decimal "ptPctg", precision: 4, scale: 2
-    t.decimal "goalsPerGame", precision: 4, scale: 2
-    t.decimal "goalsAgainstPerGame", precision: 4, scale: 2
-    t.decimal "evGGARatio", precision: 4, scale: 2
-    t.decimal "powerPlayPercentage", precision: 4, scale: 2
+    t.decimal "ptPctg", precision: 15, scale: 10
+    t.decimal "goalsPerGame", precision: 15, scale: 10
+    t.decimal "goalsAgainstPerGame", precision: 15, scale: 10
+    t.decimal "evGGARatio", precision: 15, scale: 10
+    t.decimal "powerPlayPercentage", precision: 15, scale: 10
     t.integer "powerPlayGoals"
     t.integer "powerPlayGoalsAgainst"
     t.integer "powerPlayOpportunities"
-    t.decimal "penaltyKillPercentage", precision: 4
-    t.decimal "shotsPerGame", precision: 4
-    t.decimal "shotsAllowed", precision: 4
-    t.decimal "winScoreFirst", precision: 4
-    t.decimal "winOppScoreFirst", precision: 4
-    t.decimal "winLeadFirstPer", precision: 4
-    t.decimal "winLeadSecondPer", precision: 4
-    t.decimal "winOutshootOpp", precision: 4
-    t.decimal "winOutshotByOpp", precision: 4
-    t.decimal "faceOffsTaken", precision: 4
+    t.decimal "penaltyKillPercentage", precision: 15, scale: 10
+    t.decimal "shotsPerGame", precision: 15, scale: 10
+    t.decimal "shotsAllowed", precision: 15, scale: 10
+    t.decimal "winScoreFirst", precision: 15, scale: 10
+    t.decimal "winOppScoreFirst", precision: 15, scale: 10
+    t.decimal "winLeadFirstPer", precision: 15, scale: 10
+    t.decimal "winLeadSecondPer", precision: 15, scale: 10
+    t.decimal "winOutshootOpp", precision: 15, scale: 10
+    t.decimal "winOutshotByOpp", precision: 15, scale: 10
+    t.decimal "faceOffsTaken", precision: 15, scale: 10
     t.integer "faceOffsWon"
     t.integer "faceOffsLost"
-    t.decimal "faceOffWinPercentage", precision: 4
-    t.decimal "shootingPctg", precision: 4
-    t.decimal "savePctg", precision: 4
+    t.decimal "faceOffWinPercentage", precision: 15, scale: 10
+    t.decimal "shootingPctg", precision: 15, scale: 10
+    t.decimal "savePctg", precision: 15, scale: 10
+    t.integer "season"
+    t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "team_id"
   end
 
   create_table "users", force: :cascade do |t|

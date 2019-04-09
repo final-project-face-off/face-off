@@ -16,7 +16,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!(:teams)
     team = Team.new do |key|
       key.id = team["id"]
       key.team_id = team["id"]
-      # key.season = 20182019
+      key.season = 20182019
       key.name = team["name"]
       key.gamesPlayed = team["teamStats"][0]["splits"][0]["stat"]["gamesPlayed"]
       key.wins = team["teamStats"][0]["splits"][0]["stat"]["wins"]

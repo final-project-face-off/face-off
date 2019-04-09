@@ -30,7 +30,6 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.decimal "faceOffWinPercentage", :precision => 4
       t.decimal "shootingPctg", :precision => 4
       t.decimal "savePctg", :precision => 4
-
       t.timestamps
     end
   end
