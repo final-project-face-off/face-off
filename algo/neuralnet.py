@@ -94,12 +94,13 @@ class NeuralNetwork():
             self.synaptic_weights += adjustments
 
         sys.stdout = open('weights.txt', 'w')
-        print('WEIGHTS = ', self.synaptic_weights)
+        print(self.synaptic_weights)
         sys.stdout.close()
 
     def think(self, inputs):
         # Pass inputs through the neural network to get output
-        output = self.sigmoid(np.dot(inputs, self.synaptic_weights))
+        weights = sys.stdin.readlines()
+        output = self.sigmoid(np.dot(inputs, weights))
         return output
 
     def results(self, predicted, mae, loss):
