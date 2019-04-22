@@ -6,6 +6,8 @@ import os
 import decimal
 import sys
 import json
+from keras.models import Sequential
+from keras.layers import Dense
 # import trainingdata.py as trainingData
 load_dotenv()
 
@@ -14,6 +16,8 @@ LEARNING_RATE = [decimal.Decimal('0.1')]
 # TEAM_ID_1 = int(sys.argv[1])
 # TEAM_ID_2 = int(sys.argv[2])
 # SEASON = int(sys.argv[3])
+
+model = Sequential()
 
 # Calculate mean absolute error
 def mae_metric(actual, predicted):
